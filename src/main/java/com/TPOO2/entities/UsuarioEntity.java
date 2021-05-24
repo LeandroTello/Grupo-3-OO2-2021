@@ -11,43 +11,57 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class UsuarioEntity {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
-	
-	@Column(name="nombre")
+
+	@Column(name = "nombre")
 	private String nombre;
-	
-	@Column(name="apellido")
+
+	@Column(name = "apellido")
 	private String apellido;
-	
-	@Column(name="tipo")
+
+	@Column(name = "tipo")
 	private String tipo;
-	
-	@Column(name="numeroDocumento")
-	private long numeroDocumento;
-	
-	@Column(name="correoElectronico")
-	private String correoElectronico;
-	
-	@Column(name="nombreUsuario",unique=true,nullable=false,length=45)
+
+	@Column(name = "dni")
+	private long dni;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "nombreUsuario", unique = true, nullable = false, length = 45)
 	private String nombreUsuario;
-	
-	@Column(name="pass",nullable=false,length=60)
+
+	@Column(name = "pass", nullable = false, length = 60)
 	private String pass;
-	
-	@Column(name="activo")
+
+	@Column(name = "activo")
 	private boolean activo;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="perfil_id",nullable=false)
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "perfil_id", nullable = false)
 	private PerfilEntity perfil;
-	
-	public UsuarioEntity () {}
-	
+
+	public UsuarioEntity() {
+	}
+
+	public UsuarioEntity(String nombre, String apellido, String tipo, long dni, String email, String nombreUsuario,
+			String pass, PerfilEntity perfil) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipo = tipo;
+		this.dni = dni;
+		this.email = email;
+		this.nombreUsuario = nombreUsuario;
+		this.pass = pass;
+		this.perfil = perfil;
+	}
+
 	public int getIdUsuario() {
 		return idUsuario;
 	}
@@ -80,20 +94,20 @@ public class UsuarioEntity {
 		this.tipo = tipo;
 	}
 
-	public long getNumeroDocumento() {
-		return numeroDocumento;
+	public long getDni() {
+		return dni;
 	}
 
-	public void setNumeroDocumento(long numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setDni(long dni) {
+		this.dni = dni;
 	}
 
-	public String getCorreoElectronico() {
-		return correoElectronico;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCorreoElectronico(String correoElectronico) {
-		this.correoElectronico = correoElectronico;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getNombreUsuario() {
@@ -127,6 +141,5 @@ public class UsuarioEntity {
 	public void setPerfil(PerfilEntity perfil) {
 		this.perfil = perfil;
 	}
-	
-	
+
 }

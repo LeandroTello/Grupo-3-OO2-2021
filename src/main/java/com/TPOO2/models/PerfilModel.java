@@ -12,7 +12,14 @@ public class PerfilModel {
 	private boolean activo;
 	private Set<UsuarioEntity> usuarios = new HashSet<UsuarioEntity>();
 
-	public PerfilModel () {}
+	public PerfilModel() {
+	}
+
+	public PerfilModel(String descripcion, Set<UsuarioEntity> usuarios) {
+		super();
+		this.descripcion = descripcion;
+		this.usuarios = usuarios;
+	}
 
 	public int getIdPerfil() {
 		return idPerfil;
@@ -45,6 +52,5 @@ public class PerfilModel {
 	public void setUsuarios(Set<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
-	
-	
+
 }

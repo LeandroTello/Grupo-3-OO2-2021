@@ -8,14 +8,28 @@ public class UsuarioModel {
 	private String nombre;
 	private String apellido;
 	private String tipo;
-	private long numeroDocumento;
-	private String correoElectronico;
+	private long dni;
+	private String email;
 	private String nombreUsuario;
 	private String pass;
 	private boolean activo;
-	private PerfilEntity perfil;
+	private PerfilModel perfil;
 
-	public UsuarioModel () {}
+	public UsuarioModel() {
+	}
+
+	public UsuarioModel(String nombre, String apellido, String tipo, long dni, String email, String nombreUsuario,
+			String pass, PerfilModel perfil) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipo = tipo;
+		this.dni = dni;
+		this.email = email;
+		this.nombreUsuario = nombreUsuario;
+		this.pass = pass;
+		this.perfil = perfil;
+	}
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -49,20 +63,20 @@ public class UsuarioModel {
 		this.tipo = tipo;
 	}
 
-	public long getNumeroDocumento() {
-		return numeroDocumento;
+	public long getDni() {
+		return dni;
 	}
 
-	public void setNumeroDocumento(long numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setDni(long dni) {
+		this.dni = dni;
 	}
 
-	public String getCorreoElectronico() {
-		return correoElectronico;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCorreoElectronico(String correoElectronico) {
-		this.correoElectronico = correoElectronico;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getNombreUsuario() {
@@ -89,13 +103,12 @@ public class UsuarioModel {
 		this.activo = activo;
 	}
 
-	public PerfilEntity getPerfil() {
+	public PerfilModel getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(PerfilEntity perfil) {
+	public void setPerfil(PerfilModel perfil) {
 		this.perfil = perfil;
 	}
-	
-	
+
 }

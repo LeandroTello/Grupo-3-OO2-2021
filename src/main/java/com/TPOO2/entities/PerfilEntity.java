@@ -16,30 +16,37 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name="perfil")
+@Table(name = "perfil")
 public class PerfilEntity {
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPerfil;
-	
-	@Column(name="descripcion")
+
+	@Column(name = "descripcion")
 	private String descripcion;
-	
-	@Column(name="activo")
+
+	@Column(name = "activo")
 	private boolean activo;
-	
-	@Column(name="createdat")
+
+	@Column(name = "createdat")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
-	
-	@Column(name="updatedat")
+
+	@Column(name = "updatedat")
 	private LocalDateTime updatedAt;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<UsuarioEntity> usuarios = new HashSet<UsuarioEntity>();
-	
-	public PerfilEntity () {}
+
+	public PerfilEntity() {
+	}
+
+	public PerfilEntity(String descripcion, Set<UsuarioEntity> usuarios) {
+		super();
+		this.descripcion = descripcion;
+		this.usuarios = usuarios;
+	}
 
 	public int getIdPerfil() {
 		return idPerfil;
@@ -88,5 +95,5 @@ public class PerfilEntity {
 	public void setUsuarios(Set<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
-	
+
 }
