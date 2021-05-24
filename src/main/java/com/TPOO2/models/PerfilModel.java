@@ -8,16 +8,16 @@ import com.TPOO2.entities.UsuarioEntity;
 public class PerfilModel {
 
 	private int idPerfil;
-	private String descripcion;
+	private String tipoPerfil;
 	private boolean activo;
 	private Set<UsuarioEntity> usuarios = new HashSet<UsuarioEntity>();
 
 	public PerfilModel() {
 	}
 
-	public PerfilModel(String descripcion, Set<UsuarioEntity> usuarios) {
+	public PerfilModel(String tipoPerfil, Set<UsuarioEntity> usuarios) {
 		super();
-		this.descripcion = descripcion;
+		this.tipoPerfil = tipoPerfil;
 		this.usuarios = usuarios;
 	}
 
@@ -29,12 +29,12 @@ public class PerfilModel {
 		this.idPerfil = idPerfil;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getTipoPerfil() {
+		return tipoPerfil;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setTipoPerfil(String tipoPerfil) {
+		this.tipoPerfil = tipoPerfil;
 	}
 
 	public boolean isActivo() {

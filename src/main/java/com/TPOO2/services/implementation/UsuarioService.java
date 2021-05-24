@@ -20,10 +20,10 @@ import com.TPOO2.entities.UsuarioEntity;
 import com.TPOO2.models.UsuarioModel;
 import com.TPOO2.repositories.IUsuarioRepository;
 import com.TPOO2.services.IUsuarioService;
-import com.unla.ejemplo1.entities.UserRole;
+import com.TPOO2.entities.PerfilEntity;
 
 @Service("usuarioService")
-public class UsuarioService implements IUsuarioService, UserDetailsService{
+public class UsuarioService implements IUsuarioService, UserDetailsService {
 	@Autowired
 	@Qualifier("usuarioRepository")
 	private IUsuarioRepository usuarioRepository;
@@ -53,29 +53,21 @@ public class UsuarioService implements IUsuarioService, UserDetailsService{
 		}
 	}
 
-//	@Override
-//	public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
-//		com.TPOO2.entities.UsuarioEntity usuario = usuarioRepository.traerPorNombre(nombreUsuario);
-//		return this.buildUser(usuario, this.buildGrantedAuthorities(usuario.getPerfil()));
-//	}
-//
-//	private User buildUser(com.TPOO2.entities.User user, List<GrantedAuthority> grantedAuthorities) {
-//		return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, grantedAuthorities); 
-																															// accountNonExpired,credentials
-																															// Non,
-																															// Expired,
-																															// //
-																															// accountNonLocked
+	@Override
+	public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
+		com.TPOO2.entities.UsuarioEntity usuario = usuarioRepository.traerPorNombre(nombreUsuario);
+		return buildUser(usuario, buildGrantedAuthorities(usuario.getPerfil()));
 	}
 
-//	private List<GrantedAuthority> buildGrantedAuthorities(Set<UserRole> userRoles) {
-//		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
-//		for (UserRole userRole : userRoles) {
-//			grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole()));
-//
-//		}
-//
-//		return new ArrayList<GrantedAuthority>(grantedAuthorities);
-//	}
+	private User buildUser(com.TPOO2.entities.UsuarioEntity usuarioEntity, List<GrantedAuthority> grantedAuthorities) {
+		return new User(usuarioEntity.getNombreUsuario(), usuarioEntity.getPass(), usuarioEntity.isActivo(), true, true,
+				true, grantedAuthorities);
+	}
+
+	private List<GrantedAuthority> buildGrantedAuthorities(PerfilEntity perfilEntity) {
+		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
+		grantedAuthorities.add(new SimpleGrantedAuthority(perfilEntity.getTipoPerfil()));
+		return new ArrayList<GrantedAuthority>(grantedAuthorities);
+	}
 
 }

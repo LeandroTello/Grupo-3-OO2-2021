@@ -12,19 +12,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import com.TPOO2.entities.UsuarioEntity;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "perfil")
+@Table(name = "perfil"/*,uniqueConstraints = @UniqueConstraint(columnNames= {"permiso","usuarios"})*/)
 public class PerfilEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPerfil;
 
-	@Column(name = "descripcion")
-	private String descripcion;
+	
+	@Column(name = "tipoPerfil")
+	private String tipoPerfil;
 
 	@Column(name = "activo")
 	private boolean activo;
@@ -36,17 +39,32 @@ public class PerfilEntity {
 	@Column(name = "updatedat")
 	private LocalDateTime updatedAt;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "perfil")
 	private Set<UsuarioEntity> usuarios = new HashSet<UsuarioEntity>();
 
-	public PerfilEntity() {
-	}
+	public PerfilEntity() {}
 
-	public PerfilEntity(String descripcion, Set<UsuarioEntity> usuarios) {
+	
+
+	public PerfilEntity(String tipoPerfil, boolean activo, Set<UsuarioEntity> usuarios) {
 		super();
-		this.descripcion = descripcion;
+		this.tipoPerfil = tipoPerfil;
+		this.activo = activo;
 		this.usuarios = usuarios;
 	}
+
+
+	public String getTipoPerfil() {
+		return tipoPerfil;
+	}
+
+
+
+	public void setTipoPerfil(String tipoPerfil) {
+		this.tipoPerfil = tipoPerfil;
+	}
+
+
 
 	public int getIdPerfil() {
 		return idPerfil;
@@ -56,13 +74,6 @@ public class PerfilEntity {
 		this.idPerfil = idPerfil;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 
 	public boolean isActivo() {
 		return activo;

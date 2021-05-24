@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>UNLa</title>
+<!-- Bootstrap core CSS -->
+</head>
+<body>
+	<!-- Page Content -->
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-5 alert alert-info">Logout Successfully.</h1>
+			<h1 class="display-5">Login</h1>
+			<form th:action="@{/loginprocess}" method="post">
+				<div class="form-group">
+					<label class="small mb-1" for="username">Username</label> <input
+						class="form-control py-4" name="username" id="username"
+						type="text" placeholder="Username" />
+				</div>
+				<div class="form-group">
+					<label class="small mb-1" for="password">Password</label> <input
+						class="form-control py-4" name="password" id="password"
+						type="password" placeholder="Enter password" />
+				</div>
+				<div
+					class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+					<input type="submit" />
+					<div th:if="${error != null}" class="alert alert-danger">
+						Password incorrecta</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript -->
+</body>
+</html>
