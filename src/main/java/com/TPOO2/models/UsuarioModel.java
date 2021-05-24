@@ -1,53 +1,22 @@
-package com.TPOO2.entities;
+package com.TPOO2.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.TPOO2.entities.PerfilEntity;
 
-@Entity
-@Table(name="usuario")
-public class UsuarioEntity {
+public class UsuarioModel {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idUsuario;
-	
-	@Column(name="nombre")
 	private String nombre;
-	
-	@Column(name="apellido")
 	private String apellido;
-	
-	@Column(name="tipo")
 	private String tipo;
-	
-	@Column(name="numeroDocumento")
 	private long numeroDocumento;
-	
-	@Column(name="correoElectronico")
 	private String correoElectronico;
-	
-	@Column(name="nombreUsuario",unique=true,nullable=false,length=45)
 	private String nombreUsuario;
-	
-	@Column(name="pass",nullable=false,length=60)
 	private String pass;
-	
-	@Column(name="activo")
 	private boolean activo;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="perfil_id",nullable=false)
 	private PerfilEntity perfil;
-	
-	public UsuarioEntity () {}
-	
+
+	public UsuarioModel () {}
+
 	public int getIdUsuario() {
 		return idUsuario;
 	}
