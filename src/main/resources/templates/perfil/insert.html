@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>UNLa</title>
+</head>
+<body>
+<form action="#" th:action="@{/insertPerfil}" th:object="${perfil}" method="post">
+    <p> Descripcion: <input type = "text" th:field="*{tipoPerfil}" /></p>
+    <input type="submit" />
+</form>
+</body>
+</html>

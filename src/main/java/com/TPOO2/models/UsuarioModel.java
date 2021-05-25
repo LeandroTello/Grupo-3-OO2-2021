@@ -1,13 +1,13 @@
 package com.TPOO2.models;
 
-import com.TPOO2.entities.PerfilEntity;
+import com.TPOO2.enums.Tipo;
 
 public class UsuarioModel {
 
 	private int idUsuario;
 	private String nombre;
 	private String apellido;
-	private String tipo;
+	private Tipo tipo;
 	private long dni;
 	private String email;
 	private String nombreUsuario;
@@ -18,7 +18,7 @@ public class UsuarioModel {
 	public UsuarioModel() {
 	}
 
-	public UsuarioModel(String nombre, String apellido, String tipo, long dni, String email, String nombreUsuario,
+	public UsuarioModel(String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
 			String pass, PerfilModel perfil) {
 		super();
 		this.nombre = nombre;
@@ -55,11 +55,11 @@ public class UsuarioModel {
 		this.apellido = apellido;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 

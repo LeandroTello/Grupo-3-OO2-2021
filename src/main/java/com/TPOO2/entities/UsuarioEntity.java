@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.TPOO2.enums.Tipo;
+
 @Entity
 @Table(name = "usuario")
 public class UsuarioEntity {
@@ -25,7 +27,7 @@ public class UsuarioEntity {
 	private String apellido;
 
 	@Column(name = "tipo")
-	private String tipo;
+	private Tipo tipo;
 
 	@Column(name = "dni")
 	private long dni;
@@ -49,7 +51,7 @@ public class UsuarioEntity {
 	public UsuarioEntity() {
 	}
 
-	public UsuarioEntity(String nombre, String apellido, String tipo, long dni, String email, String nombreUsuario,
+	public UsuarioEntity(String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
 			String pass, PerfilEntity perfil) {
 		super();
 		this.nombre = nombre;
@@ -86,11 +88,11 @@ public class UsuarioEntity {
 		this.apellido = apellido;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
