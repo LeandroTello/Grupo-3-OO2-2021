@@ -4,13 +4,22 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
 
 @Controller
-//@RequestMapping("/")
+@RequestMapping("/")
 public class LoginController {
+	
+	@GetMapping("")
+	public ModelAndView index() {
+		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.HOME_INDEX);
+		return modelAndView;
+	}
+	
 	@GetMapping("/login")
 	public String login(Model model,
 						@RequestParam(name="error",required=false) String error,
@@ -29,6 +38,6 @@ public class LoginController {
 	
 	@GetMapping("/loginsuccess")
 	public String loginCheck() {
-		return "redirect:/index";
+		return ViewRouteHelper.USER_ROOT;
 	}
 }

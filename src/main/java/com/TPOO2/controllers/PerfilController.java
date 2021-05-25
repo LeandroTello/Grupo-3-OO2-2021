@@ -17,18 +17,13 @@ import com.TPOO2.services.IPerfilService;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home")
 public class PerfilController {
 	
 	@Autowired
 	@Qualifier("perfilService")
 	private IPerfilService perfilService;
 	
-	@GetMapping("index")
-	public ModelAndView home(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.HOME_INDEX);
-		return mAV;
-	}
 	
 	@GetMapping("agregarPerfil")
 	 public ModelAndView agregarPerfil(Model model) {
@@ -43,6 +38,6 @@ public class PerfilController {
 	public RedirectView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
 		perfilModel.setActivo(true);
 		perfilService.insertOrUpdate(perfilModel);
-		return new RedirectView(ViewRouteHelper.HOME_ROOT);
+		return new RedirectView(ViewRouteHelper.USER_ROOT);
 	}
 }
