@@ -47,7 +47,7 @@
 								nuevo usuario</h3>
 						</div>
 						<div class="card-body">
-							<form action="#" th:action="@{/insertUsuario}"
+							<form action="#" th:action="@{/home/insertUsuario}"
 								th:object="${usuario}" method="post">
 								<p>
 									Nombre: <input type="text" th:field="*{nombre}" />
@@ -57,10 +57,9 @@
 								</p>
 								<p>
 									<select th:field="*{tipo}">
-										<option th:value=1 th:text="D.N.I"></option>
-										<option th:value=2 th:text="L.C"></option>
-										<option th:value=3 th:text="L.E"></option>
-										<option th:value=4 th:text="C.I"></option>
+										<option th:value="DNI" th:text="D.N.I"></option>
+										<option th:value="LC" th:text="L.C"></option>
+										<option th:value="CI" th:text="C.I"></option>
 									</select>
 								</p>
 								<p>
@@ -77,13 +76,16 @@
 									Clave: <input type="password" th:field="*{pass}" />
 								</p>
 								<p>
-									<select th:field="*{perfil.tipoPerfil}">
-										<option th:value="ROLE_ADMIN" th:text="Administrador"></option>
-										<option th:value="ROLE_AUDIT" th:text="Auditor"></option>
+									<select type:"text" th:field="*{perfil}">
+											<option th:each="perfil : ${perfiles}" 
+												th:value=perfil  th:text="${perfil.tipoPerfil}"></option>
+											<!--
+											<option th:value="ROLE_ADMIN" th:text="Administrador"></option>
+											<option th:value="ROLE_AUDIT" th:text="Auditor"></option>
+											-->
 									</select>
 								</p>
-								<br>
-								<input type="submit" />
+								<br> <input type="submit" />
 							</form>
 						</div>
 					</div>
@@ -91,17 +93,18 @@
 			</div>
 		</div>
 	</div>
-	 <!-- /.container -->
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy;Grupo 3 Objetos 2 2021</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-    <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	
+	<!-- /.container -->
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy;Grupo 3
+				Objetos 2 2021</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

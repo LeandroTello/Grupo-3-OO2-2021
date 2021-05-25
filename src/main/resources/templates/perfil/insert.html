@@ -42,17 +42,15 @@
 								nuevo perfil</h3>
 						</div>
 						<div class="card-body">
-	<form action="#" th:action="@{/insertPerfil}" th:object="${perfil}"
-        method="post">
-        <br>
-            <br>
-        <p>
-            Descripcion: <input type="text" th:field="*{tipoPerfil}" />
-        </p>
-        <br>
-        <input type="submit" />   <br>
-           
-					</form>
+							<form action="#" th:action="@{/home/insertPerfil}"
+								th:object="${perfil}" method="post">
+								<br> <br>
+								<p>
+									Descripcion: <input type="text" th:field="*{tipoPerfil}" />
+								</p>
+								<br> <input type="submit" /> <br>
+
+							</form>
 						</div>
 					</div>
 				</div>

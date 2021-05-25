@@ -38,6 +38,6 @@ public class PerfilController {
 	public RedirectView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
 		perfilModel.setActivo(true);
 		perfilService.insertOrUpdate(perfilModel);
-		return new RedirectView(ViewRouteHelper.USER_ROOT);
+		return new RedirectView(ViewRouteHelper.PERFIL_CARGAR);
 	}
 }

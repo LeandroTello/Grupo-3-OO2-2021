@@ -15,41 +15,33 @@ import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PerfilModel;
 import com.TPOO2.models.UsuarioModel;
 import com.TPOO2.services.IPerfilService;
+import com.TPOO2.services.IUsuarioService;
 
 @Controller
 @RequestMapping("/home")
 public class UsuarioController {
 	
-	/*@Autowired
+	@Autowired
+	@Qualifier("usuarioService")
+	private IUsuarioService usuarioService;
+	
+	@Autowired
 	@Qualifier("perfilService")
 	private IPerfilService perfilService;
 	
-	@GetMapping("index")
-	public ModelAndView home(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.HOME_INDEX);
-		return mAV;
-	}
-	
-	@GetMapping("agregarPerfil")
-	 public ModelAndView agregarPerfil(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_INSERT);
-		mAV.addObject("perfiles", perfilService.traerPerfiles());
-		mAV.addObject("perfil", new PerfilModel());
-		return mAV;
-	}
-
-	
-	@PostMapping("insertPerfil")
-	public RedirectView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
-		perfilModel.setActivo(true);
-		perfilService.insertOrUpdate(perfilModel);
-		return new RedirectView(ViewRouteHelper.HOME_ROOT);
-	}*/
 	@GetMapping("agregarUsuario")
-	public ModelAndView test() {
-		ModelAndView mAV = new ModelAndView("usuario/cargarUsuario");
+	public ModelAndView agregarUsuario() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_USER);
+		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		mAV.addObject("usuario",new UsuarioModel());
 		return mAV;
+	}
+	
+	@PostMapping("insertUsuario")
+	public RedirectView insertarUsuario(@ModelAttribute("usuario") UsuarioModel usuarioModel) {
+		usuarioModel.setActivo(true);
+		usuarioService.insertOrUpdate(usuarioModel);
+		return new RedirectView(ViewRouteHelper.USUARIO_CARGAR);
 	}
 }
 
