@@ -1,5 +1,6 @@
 package com.TPOO2.services.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,16 @@ public class PerfilService implements IPerfilService {
 	@Autowired
 	@Qualifier("perfilConverter")
 	private PerfilConverter perfilConverter;
-
+	
 	@Override
-	public List<PerfilEntity> getAll() {
-		return perfilRepository.findAll();
+	public List<PerfilModel> traerPerfiles() {
+		List<PerfilModel> models = new ArrayList<PerfilModel>();
+		for (PerfilEntity perfil : perfilRepository.findAll()) {
+			models.add(perfilConverter.entityToModel(perfil));
+		}
+		return models;
 	}
+
 
 	@Override
 	public PerfilModel insertOrUpdate(PerfilModel perfilModel) {

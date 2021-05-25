@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="perfil : ${perfiles}">
+				<td><span th:text="${perfil.tipoPerfil}"></td>
+
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
