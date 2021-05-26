@@ -29,7 +29,9 @@ public class PerfilService implements IPerfilService {
 	public List<PerfilModel> traerPerfiles() {
 		List<PerfilModel> models = new ArrayList<PerfilModel>();
 		for (PerfilEntity perfil : perfilRepository.findAll()) {
+			if(perfil.isActivo()) {
 			models.add(perfilConverter.entityToModel(perfil));
+			}
 		}
 		return models;
 	}
@@ -56,6 +58,10 @@ public class PerfilService implements IPerfilService {
     public PerfilEntity traerPorID(int id) {
         return perfilRepository.traerPorID(id);
     }
+	@Override
+	public PerfilModel traerPorId(int id) {
+	        return perfilConverter.entityToModel(this.traerPorID(id));
+	    }
 
 			
 

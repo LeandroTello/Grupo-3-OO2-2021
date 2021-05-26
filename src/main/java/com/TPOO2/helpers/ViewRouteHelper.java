@@ -13,6 +13,9 @@ public class ViewRouteHelper {
 	public final static String PERFIL_CARGAR = "agregarPerfil";
 	public final static String PERFIL_INSERT = "perfil/insert";
 	public final static String PERFIL_USER = "usuario/cargarUsuario";
+	public final static String PERFIL_LIST = "perfil/listadoPerfil";
+	public final static String PERFIL_MODIF = "perfil/modificar";
+	
 
 
 }

@@ -46,6 +46,13 @@ public class PerfilEntity {
 
 	
 
+	public PerfilEntity(int idPerfil,String tipoPerfil, boolean activo, Set<UsuarioEntity> usuarios) {
+		super();
+		this.setIdPerfil(idPerfil);
+		this.tipoPerfil = tipoPerfil;
+		this.activo = activo;
+		this.usuarios = usuarios;
+	}
 	public PerfilEntity(String tipoPerfil, boolean activo, Set<UsuarioEntity> usuarios) {
 		super();
 		this.tipoPerfil = tipoPerfil;
@@ -70,7 +77,7 @@ public class PerfilEntity {
 		return idPerfil;
 	}
 
-	protected void setIdPerfil(int idPerfil) {
+	public void setIdPerfil(int idPerfil) {
 		this.idPerfil = idPerfil;
 	}
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,4 +41,17 @@ public class PerfilController {
 		perfilService.insertOrUpdate(perfilModel);
 		return new RedirectView(ViewRouteHelper.PERFIL_CARGAR);
 	}
+	
+	@GetMapping("mostrarPerfiles")
+	 public ModelAndView mostrarPerfiles(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_LIST);
+		mAV.addObject("perfiles", perfilService.traerPerfiles());
+		return mAV;
+	}
+	@GetMapping("modificarPerfil/{idPerfil}")
+    public String editar(@PathVariable int idPerfil,Model model) {
+        PerfilModel perfil = perfilService.traerPorId(idPerfil);
+        model.addAttribute("perfil", perfil);
+        return ViewRouteHelper.PERFIL_MODIF;
+    }
 }

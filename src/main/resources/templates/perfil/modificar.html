@@ -16,20 +16,6 @@
 			<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					
-					<li class="nav-item dropdown">
-						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Perfiles</a>
-						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="/home/agregarPerfil">Alta de perfil</a>
-						<a class="dropdown-item" href="/home/mostrarPerfiles">Lista de perfiles</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Usuario</a>
-						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="/home/agregarUsuario">Alta de usuario</a>
-						</div>
-					</li>
 					   <!-- Desplegable -->
 					<li class="nav-item dropdown">
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
@@ -37,7 +23,7 @@
 							<form th:action="@{/logout}" method="post">
 								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Logout" />
 							</form>
-						 <!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->	
+							<!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->	
 						</div>
 					</li>
 					
@@ -45,6 +31,42 @@
 			</div> 
 		</div>
 	</nav>
+	
+	<div class="container">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="card shadow-lg border-100 rounded-lg mt-5">
+						<div class="card-header">
+							<h3 class="text-center font-weight-light my-4">Modifique el perfil</h3>
+						</div>
+						<div class="card-body">
+							<form action="#" th:action="@{/home/insertPerfil}"
+								th:object="${perfil}" method="post">
+								<br> <br>
+								<p>
+									Descripcion: <input type="text" th:value="*{tipoPerfil}" th:field="*{tipoPerfil}" />
+									<input type="hidden" th:value="*{idPerfil}" th:field="*{idPerfil}" />
+								</p>
+								<br> <input type="submit" /> <br>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+       <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
     <!-- /.container -->
     <!-- Footer -->
@@ -57,5 +79,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>
