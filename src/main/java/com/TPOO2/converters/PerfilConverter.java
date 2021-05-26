@@ -9,7 +9,7 @@ import com.TPOO2.models.PerfilModel;
 public class PerfilConverter {
 	
 	public PerfilModel entityToModel(PerfilEntity perfilEntity) {
-		return new PerfilModel(perfilEntity.getTipoPerfil(), perfilEntity.getUsuarios());
+		return new PerfilModel(perfilEntity.getIdPerfil(),perfilEntity.getTipoPerfil(), perfilEntity.getUsuarios());
 	}
 
 	public PerfilEntity modelToEntity(PerfilModel perfilModel) {

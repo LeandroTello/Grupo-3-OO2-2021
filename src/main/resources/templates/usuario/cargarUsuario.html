@@ -76,9 +76,9 @@
 									Clave: <input type="password" th:field="*{pass}" />
 								</p>
 								<p>
-									<select type:"text" th:field="*{perfil}">
-											<option th:each="perfil : ${perfiles}" 
-												th:value=perfil  th:text="${perfil.tipoPerfil}"></option>
+									<select  th:field="*{idPerfil}">
+											<option th:each="p : ${perfiles}" 
+												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>
 											<!--
 											<option th:value="ROLE_ADMIN" th:text="Administrador"></option>
 											<option th:value="ROLE_AUDIT" th:text="Auditor"></option>

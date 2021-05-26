@@ -20,6 +20,12 @@ public class PerfilModel {
 		this.tipoPerfil = tipoPerfil;
 		this.usuarios = usuarios;
 	}
+	public PerfilModel(int idPerfil,String tipoPerfil, Set<UsuarioEntity> usuarios) {
+		super();
+		this.idPerfil = idPerfil;
+		this.tipoPerfil = tipoPerfil;
+		this.usuarios = usuarios;
+	}
 	
 	public PerfilModel(String tipoPerfil,int idPerfil) {
 		super();

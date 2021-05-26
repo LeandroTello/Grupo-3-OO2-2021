@@ -17,13 +17,19 @@ import org.springframework.stereotype.Service;
 
 import com.TPOO2.converters.UsuarioConverter;
 import com.TPOO2.entities.UsuarioEntity;
+import com.TPOO2.funciones.Funciones;
 import com.TPOO2.models.UsuarioModel;
+import com.TPOO2.repositories.IPerfilRepository;
 import com.TPOO2.repositories.IUsuarioRepository;
 import com.TPOO2.services.IUsuarioService;
 import com.TPOO2.entities.PerfilEntity;
 
 @Service("usuarioService")
 public class UsuarioService implements IUsuarioService, UserDetailsService {
+	
+	@Autowired
+	@Qualifier("perfilRepository")
+	private IPerfilRepository perfilRepository;
 	@Autowired
 	@Qualifier("usuarioRepository")
 	private IUsuarioRepository usuarioRepository;
@@ -38,7 +44,8 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	}
 
 	@Override
-	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel) {
+	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel) {		
+		usuarioModel.setPass(Funciones.encriptarPass(usuarioModel.getPass()));
 		UsuarioEntity usuarioEntity = usuarioRepository.save(usuarioConverter.modelToEntity(usuarioModel));
 		return usuarioConverter.entityToModel(usuarioEntity);
 	}

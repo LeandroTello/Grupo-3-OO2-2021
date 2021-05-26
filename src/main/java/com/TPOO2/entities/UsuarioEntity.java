@@ -38,7 +38,7 @@ public class UsuarioEntity {
 	@Column(name = "nombreUsuario", unique = true, nullable = false, length = 45)
 	private String nombreUsuario;
 
-	@Column(name = "pass", nullable = false, length = 60)
+	@Column(name = "pass", nullable = false, length = 100)
 	private String pass;
 
 	@Column(name = "activo")
@@ -52,7 +52,7 @@ public class UsuarioEntity {
 	}
 
 	public UsuarioEntity(String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
-			String pass, PerfilEntity perfil) {
+			String pass,boolean activo, PerfilEntity perfil) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -61,6 +61,7 @@ public class UsuarioEntity {
 		this.email = email;
 		this.nombreUsuario = nombreUsuario;
 		this.pass = pass;
+		this.activo = activo;
 		this.perfil = perfil;
 	}
 
