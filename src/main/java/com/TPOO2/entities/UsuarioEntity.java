@@ -51,7 +51,21 @@ public class UsuarioEntity {
 	public UsuarioEntity() {
 	}
 
-	public UsuarioEntity(String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
+	public UsuarioEntity(int idUsuario, String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
+			String pass,boolean activo, PerfilEntity perfil) {
+		super();
+		this.setIdUsuario(idUsuario);
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipo = tipo;
+		this.dni = dni;
+		this.email = email;
+		this.nombreUsuario = nombreUsuario;
+		this.pass = pass;
+		this.activo = activo;
+		this.perfil = perfil;
+	}
+	public UsuarioEntity( String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
 			String pass,boolean activo, PerfilEntity perfil) {
 		super();
 		this.nombre = nombre;
@@ -69,7 +83,7 @@ public class UsuarioEntity {
 		return idUsuario;
 	}
 
-	protected void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

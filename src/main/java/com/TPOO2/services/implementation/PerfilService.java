@@ -58,10 +58,11 @@ public class PerfilService implements IPerfilService {
     public PerfilEntity traerPorID(int id) {
         return perfilRepository.traerPorID(id);
     }
+	
 	@Override
 	public PerfilModel traerPorId(int id) {
 	        return perfilConverter.entityToModel(this.traerPorID(id));
-	    }
+	}
 
 			
 

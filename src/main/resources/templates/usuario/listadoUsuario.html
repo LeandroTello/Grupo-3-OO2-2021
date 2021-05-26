@@ -7,6 +7,17 @@
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <!-- Custom styles for this template -->
 <link href="/css/modern-business.css" rel="stylesheet" />
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table.center {
+  margin-left: 25px; 
+  margin-right: auto;
+}
+</style>
 </head>
 <body>
 	<!-- Navigation -->
@@ -30,69 +41,68 @@
 								<input class="dropdown-item" style="cursor: pointer"
 									type="submit" value="Logout" />
 							</form>
+							<!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->
 						</div></li>
 
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 	<div class="container">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-5">
-					<div class="card shadow-lg border-2 rounded-lg mt-5">
+					<div class="card shadow-lg border-100 rounded-lg mt-5">
 						<div class="card-header">
 							<h3 class="text-center font-weight-light my-4">Ingrese el
-								nuevo usuario</h3>
+								nuevo perfil</h3>
 						</div>
 						<div class="card-body">
-							<form action="#" th:action="@{/home/insertUsuario}"
-								th:object="${usuario}" method="post">
-								<p>
-									Nombre: <input type="text" th:field="*{nombre}" />
-								</p>
-								<p>
-									Apellido: <input type="text" th:field="*{apellido}" />
-								</p>
-								<p>
-									<select th:field="*{tipo}">
-										<option th:value="DNI" th:text="D.N.I"></option>
-										<option th:value="LC" th:text="L.C"></option>
-										<option th:value="CI" th:text="C.I"></option>
-									</select>
-								</p>
-								<p>
-									Numero de documento: <input type="number" th:field="*{dni}" />
-								</p>
-								<p>
-									Email: <input type="text" th:field="*{email}" />
-								</p>
-								<p>
-									Nombre de usuario: <input type="text"
-										th:field="*{nombreUsuario}" />
-								</p>
-								<p>
-									Clave: <input type="password" th:field="*{pass}" />
-								</p>
-								<p>
-									<select  th:field="*{idPerfil}">
-											<option th:each="p : ${perfiles}" 
-												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>
-											<!--
-											<option th:value="ROLE_ADMIN" th:text="Administrador"></option>
-											<option th:value="ROLE_AUDIT" th:text="Auditor"></option>
-											-->
-									</select>
-								</p>
-								<br> <input type="submit"class="btn-create" value="Crear"/>
-							</form>
+							<table class="center">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Apellido</th>
+										<th>Email</th>
+										<th>Tipo de documento</th>
+										<th>Numero de documento</th>
+										<th>Nombre de usuario</th>
+										<th>Tipo de perfil</th>
+										<th>Modificar</th>
+										<th>Eliminar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="usuario : ${usuarios}">
+										<td><span th:text="${usuario.nombre}"></span></td>
+										<td><span th:text="${usuario.apellido}"></span></td>
+										<td><span th:text="${usuario.email}"></span></td>
+										<td><span th:text="${usuario.tipo}"></span></td>
+										<td><span th:text="${usuario.dni}"></span></td>
+										<td><span th:text="${usuario.nombreUsuario}"></span></td>
+										<td><span th:text="${usuario.perfil.tipoPerfil}"></span></td>
+										<td><a th:href="@{modificarUsuario/}+${usuario.idUsuario}"	class="btn-modify">Modificar</a></td>
+										<td><a th:href="@{eliminarUsuario/}+${usuario.idUsuario}"class="btn-delete">Eliminar</a></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
 	<!-- /.container -->
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
@@ -106,5 +116,7 @@
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+</body>
+</html>
 </body>
 </html>

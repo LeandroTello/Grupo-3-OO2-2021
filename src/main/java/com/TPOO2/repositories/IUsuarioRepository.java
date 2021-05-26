@@ -11,9 +11,10 @@ import com.TPOO2.entities.UsuarioEntity;
 
 @Repository("usuarioRepository")
 public interface IUsuarioRepository extends JpaRepository<UsuarioEntity, Serializable>{
-	/*public abstract UsuarioEntity traerNombre(String nombre);
-	public abstract UsuarioEntity traerApellido(String apellido);*/
 	
 	@Query("SELECT u FROM UsuarioEntity u JOIN FETCH u.perfil WHERE u.nombreUsuario = (:nombreUsuario)")
 	public abstract UsuarioEntity traerPorNombre(@Param("nombreUsuario")String nombreUsuario);
+	
+	@Query("SELECT u FROM UsuarioEntity u JOIN FETCH u.perfil WHERE u.idUsuario = (:idUsuario)")
+	public abstract UsuarioEntity traerPorID(@Param("idUsuario")int idUsuario);
 }

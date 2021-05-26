@@ -59,8 +59,8 @@
 									<tr th:each="perfil : ${perfiles}">
 										<td><span th:text="${perfil.tipoPerfil}"></span></td>
 
-										<td><a th:href="@{modificarPerfil/}+${perfil.idPerfil}"	class="btn-blue">Modificar</a></td>
-										<td><a th:href="@{eliminarPerfil/}+${perfil.idPerfil}">Eliminar</a></td>
+										<td><a th:href="@{modificarPerfil/}+${perfil.idPerfil}"	class="btn-modify">Modificar</a></td>
+										<td><a th:href="@{eliminarPerfil/}+${perfil.idPerfil}"class="btn-delete">Eliminar</a></td>
 
 									</tr>
 								</tbody>

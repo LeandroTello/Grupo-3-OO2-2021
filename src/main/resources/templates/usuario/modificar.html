@@ -50,42 +50,38 @@
 							<form action="#" th:action="@{/home/insertUsuario}"
 								th:object="${usuario}" method="post">
 								<p>
-									Nombre: <input type="text" th:field="*{nombre}" />
+									Nombre: <input type="text"th:value="*{nombre}" th:field="*{nombre}" />
 								</p>
 								<p>
-									Apellido: <input type="text" th:field="*{apellido}" />
+									Apellido: <input type="text"th:value="*{apellido}" th:field="*{apellido}" />
 								</p>
 								<p>
-									<select th:field="*{tipo}">
+									<select th:value="*{tipo}" th:field="*{tipo}">
 										<option th:value="DNI" th:text="D.N.I"></option>
 										<option th:value="LC" th:text="L.C"></option>
 										<option th:value="CI" th:text="C.I"></option>
 									</select>
 								</p>
 								<p>
-									Numero de documento: <input type="number" th:field="*{dni}" />
+									Numero de documento: <input type="number" th:value="*{dni}" th:field="*{dni}" />
 								</p>
 								<p>
-									Email: <input type="text" th:field="*{email}" />
+									Email: <input type="text" th:value="*{email}"th:field="*{email}" />
 								</p>
 								<p>
-									Nombre de usuario: <input type="text"
-										th:field="*{nombreUsuario}" />
+									<input type="hidden" th:value="*{pass}" th:field="*{pass}" />
+									<input type="hidden" th:value="*{idUsuario}" th:field="*{idUsuario}" />
+									<input type="hidden" th:value="*{activo}" th:field="*{activo}" />
+									<input type="hidden" th:value="*{nombreUsuario}" th:field="*{nombreUsuario}" />
+									<input type="hidden" th:value="*{perfil.tipoPerfil}" th:field="*{perfil.tipoPerfil}" />
 								</p>
 								<p>
-									Clave: <input type="password" th:field="*{pass}" />
-								</p>
-								<p>
-									<select  th:field="*{idPerfil}">
+									<select  th:value="*{idPerfil}" th:field="*{idPerfil}">
 											<option th:each="p : ${perfiles}" 
 												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>
-											<!--
-											<option th:value="ROLE_ADMIN" th:text="Administrador"></option>
-											<option th:value="ROLE_AUDIT" th:text="Auditor"></option>
-											-->
 									</select>
 								</p>
-								<br> <input type="submit"class="btn-create" value="Crear"/>
+								<br> <input type="submit"class="btn-modify" value="modificar"/>
 							</form>
 						</div>
 					</div>

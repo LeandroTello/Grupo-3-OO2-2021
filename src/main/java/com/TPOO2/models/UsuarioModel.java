@@ -14,6 +14,7 @@ public class UsuarioModel {
 	private String pass;
 	private boolean activo;
 	private int idPerfil;
+	private PerfilModel perfil;
 
 	public UsuarioModel() {
 	}
@@ -31,6 +32,7 @@ public class UsuarioModel {
 		this.activo = activo;
 		this.idPerfil = idPerfil;
 	}
+	
 	public UsuarioModel(String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
 			String pass) {
 		super();
@@ -42,12 +44,26 @@ public class UsuarioModel {
 		this.nombreUsuario = nombreUsuario;
 		this.pass = pass;
 	}
+	
+	public UsuarioModel(int idUsuario,String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
+			String pass,PerfilModel perfil) {
+		super();
+		this.setIdUsuario(idUsuario);
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipo = tipo;
+		this.dni = dni;
+		this.email = email;
+		this.nombreUsuario = nombreUsuario;
+		this.pass = pass;
+		this.perfil = perfil;
+	}
 
 	public int getIdUsuario() {
 		return idUsuario;
 	}
 
-	protected void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -123,6 +139,14 @@ public class UsuarioModel {
 		this.idPerfil = idPerfil;
 	}
 
+	public PerfilModel getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(PerfilModel perfil) {
+		this.perfil = perfil;
+	}
+	
 
 
 }

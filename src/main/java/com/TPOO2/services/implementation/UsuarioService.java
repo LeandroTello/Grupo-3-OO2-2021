@@ -15,9 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.TPOO2.converters.PerfilConverter;
 import com.TPOO2.converters.UsuarioConverter;
 import com.TPOO2.entities.UsuarioEntity;
 import com.TPOO2.funciones.Funciones;
+import com.TPOO2.models.PerfilModel;
 import com.TPOO2.models.UsuarioModel;
 import com.TPOO2.repositories.IPerfilRepository;
 import com.TPOO2.repositories.IUsuarioRepository;
@@ -37,15 +39,43 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	@Autowired
 	@Qualifier("usuarioConverter")
 	private UsuarioConverter usuarioConverter;
+	
+	@Autowired
+	@Qualifier("perfilConverter")
+	private PerfilConverter perfilConverter;
 
 	@Override
 	public List<UsuarioEntity> getAll() {
 		return usuarioRepository.findAll();
 	}
+	
+	@Override
+    public UsuarioEntity traerPorID(int id) {
+        return usuarioRepository.traerPorID(id);
+    }
+	
+	@Override
+	public UsuarioModel traerPorId(int id) {
+	        return usuarioConverter.entityToModel(this.traerPorID(id));
+	}
+	
+	@Override
+	public List<UsuarioModel> traerUsuarios() {
+		List<UsuarioModel> models = new ArrayList<UsuarioModel>();
+		int index = 0;
+		for (UsuarioEntity usuario : usuarioRepository.findAll()) {
+			if(usuario.isActivo()) {
+			models.add(usuarioConverter.entityToModel(usuario));
+			models.get(index).setPerfil(perfilConverter.entityToModel(usuario.getPerfil()));
+			index ++;
+			}
+		}		
+		return models;
+	}
 
 	@Override
-	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel) {		
-		usuarioModel.setPass(Funciones.encriptarPass(usuarioModel.getPass()));
+	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel) {	
+		if(usuarioModel.getPass().length()<40)usuarioModel.setPass(Funciones.encriptarPass(usuarioModel.getPass()));
 		UsuarioEntity usuarioEntity = usuarioRepository.save(usuarioConverter.modelToEntity(usuarioModel));
 		return usuarioConverter.entityToModel(usuarioEntity);
 	}
