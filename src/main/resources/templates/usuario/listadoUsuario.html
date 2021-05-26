@@ -91,11 +91,12 @@ table.center {
 										<td style="text-align:center"><span th:text="${usuario.dni}"></span></td>
 										<td style="text-align:center"><span th:text="${usuario.nombreUsuario}"></span></td>
 										<td style="text-align:center"><span th:text="${usuario.perfil.tipoPerfil}"></span></td>
-										<td style="text-align:center"><a th:href="@{modificarUsuario/}+${usuario.idUsuario}"	class="btn-modify">Modificar</a></td>
+										<td style="text-align:center"><a th:href="@{modificarUsuario/}+${usuario.idUsuario}"class="btn-modify" >Modificar</a></td>
 										<td style="text-align:center"><a th:href="@{eliminarUsuario/}+${usuario.idUsuario}"class="btn-delete">Eliminar</a></td>
 									</tr>
 								</tbody>
 							</table>
+							<a th:href="@{pdf}"class="btn-modify">Descargar PDF</a>
 						</div>
 	<br>
 	<br>

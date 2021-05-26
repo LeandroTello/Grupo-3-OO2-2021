@@ -1,5 +1,7 @@
 package com.TPOO2.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
+import com.TPOO2.models.UsuarioModel;
 
 @Controller
 @RequestMapping("/")
@@ -17,6 +20,8 @@ public class LoginController {
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.HOME_INDEX);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication ().getPrincipal();
+		modelAndView.addObject("username", user.getUsername());
 		return modelAndView;
 	}
 	
