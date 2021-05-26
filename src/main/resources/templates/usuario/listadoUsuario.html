@@ -14,8 +14,26 @@ table, th, td {
 }
 
 table.center {
-  margin-left: 25px; 
+  margin-left: auto; 
   margin-right: auto;
+}
+</style>
+
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.container {
+  padding: auto 40px;
 }
 </style>
 </head>
@@ -48,50 +66,37 @@ table.center {
 			</div>
 		</div>
 	</nav>
-	<div class="container">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-5">
-					<div class="card shadow-lg border-100 rounded-lg mt-5">
-						<div class="card-header">
-							<h3 class="text-center font-weight-light my-4">Ingrese el
-								nuevo perfil</h3>
-						</div>
+							<h3 class="text-center font-weight-light my-4">Lista de usuario activos</h3>
 						<div class="card-body">
 							<table class="center">
 								<thead>
 									<tr>
-										<th>Nombre</th>
-										<th>Apellido</th>
-										<th>Email</th>
-										<th>Tipo de documento</th>
-										<th>Numero de documento</th>
-										<th>Nombre de usuario</th>
-										<th>Tipo de perfil</th>
-										<th>Modificar</th>
-										<th>Eliminar</th>
+										<th style="text-align:center">Nombre</th>
+										<th style="text-align:center">Apellido</th>
+										<th style="text-align:center">Email</th>
+										<th style="text-align:center">Tipo de documento</th>
+										<th style="text-align:center">Numero de documento</th>
+										<th style="text-align:center">Nombre de usuario</th>
+										<th style="text-align:center">Tipo de perfil</th>
+										<th style="text-align:center">Modificar</th>
+										<th style="text-align:center">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="usuario : ${usuarios}">
-										<td><span th:text="${usuario.nombre}"></span></td>
-										<td><span th:text="${usuario.apellido}"></span></td>
-										<td><span th:text="${usuario.email}"></span></td>
-										<td><span th:text="${usuario.tipo}"></span></td>
-										<td><span th:text="${usuario.dni}"></span></td>
-										<td><span th:text="${usuario.nombreUsuario}"></span></td>
-										<td><span th:text="${usuario.perfil.tipoPerfil}"></span></td>
-										<td><a th:href="@{modificarUsuario/}+${usuario.idUsuario}"	class="btn-modify">Modificar</a></td>
-										<td><a th:href="@{eliminarUsuario/}+${usuario.idUsuario}"class="btn-delete">Eliminar</a></td>
+										<td style="text-align:center"><span th:text="${usuario.nombre}"></span></td>
+										<td style="text-align:center"><span th:text="${usuario.apellido}"></span></td>
+										<td style="text-align:center"><span th:text="${usuario.email}"></span></td>
+										<td style="text-align:center"><span th:text="${usuario.tipo}"></span></td>
+										<td style="text-align:center"><span th:text="${usuario.dni}"></span></td>
+										<td style="text-align:center"><span th:text="${usuario.nombreUsuario}"></span></td>
+										<td style="text-align:center"><span th:text="${usuario.perfil.tipoPerfil}"></span></td>
+										<td style="text-align:center"><a th:href="@{modificarUsuario/}+${usuario.idUsuario}"	class="btn-modify">Modificar</a></td>
+										<td style="text-align:center"><a th:href="@{eliminarUsuario/}+${usuario.idUsuario}"class="btn-delete">Eliminar</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<br>
 	<br>
 	<br>
