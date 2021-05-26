@@ -54,4 +54,14 @@ public class PerfilController {
         model.addAttribute("perfil", perfil);
         return ViewRouteHelper.PERFIL_MODIF;
     }
+
+	
+	@GetMapping("eliminarPerfil/{idPerfil}")
+    public RedirectView eliminar(@PathVariable int idPerfil,Model model) {
+        PerfilModel perfil = perfilService.traerPorId(idPerfil);
+        perfil.setActivo(false);
+        perfilService.insertOrUpdate(perfil);
+        return new RedirectView(ViewRouteHelper.PERFIL_MOST);
+    }
+	
 }

@@ -15,6 +15,8 @@ public class ViewRouteHelper {
 	public final static String PERFIL_USER = "usuario/cargarUsuario";
 	public final static String PERFIL_LIST = "perfil/listadoPerfil";
 	public final static String PERFIL_MODIF = "perfil/modificar";
+
+	public final static String PERFIL_MOST = "/home/mostrarPerfiles";
 	
 
 
