@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.TPOO2.entities.UsuarioEntity;
@@ -47,7 +49,10 @@ public class UsuarioController {
 	private IPerfilService perfilService;
 	
 	@GetMapping("agregarUsuario")
-	public ModelAndView agregarUsuario() {
+	public ModelAndView agregarUsuario(Model model,@RequestParam(name="error",required=false) String error,
+			@RequestParam(name="logout", required=false) String logout) {
+		model.addAttribute("error", error);
+		model.addAttribute("logout", logout);
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_USER);
 		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		mAV.addObject("usuario",new UsuarioModel());
@@ -55,33 +60,21 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("insertarUsuario")
-	public RedirectView insertarUsuario(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel,BindingResult bindingResult) {
-		RedirectView redirect = new RedirectView();
+	public ModelAndView insertarUsuario(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel,BindingResult bindingResult) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_USER);
 		if(bindingResult.hasErrors()) {
-			redirect.setUrl("redirect:/home/agregarUsuario");
+			mAV.addObject("perfiles", perfilService.traerPerfiles());
+			mAV.addObject("usuario",usuarioModel);
 		}
 		else {
 		usuarioModel.setActivo(true);
 		usuarioService.insertOrUpdate(usuarioModel);
-		redirect.setUrl("redirect:/home/insertarUsuario");
+		ModelAndView mAVaux = new ModelAndView("redirect:/home/mostrarUsuarios");
+		mAV=mAVaux;
 		}
-		return new RedirectView("agregarUsuario");
+		return mAV;
 	}
 	
-	/*@PostMapping("insertUsuario")
-    public RedirectView insertarUsuario(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel, BindingResult result) {
-        RedirectView redirect= new RedirectView(ViewRouteHelper.PERFIL_USER);
-        if(result.hasErrors()) {
-            redirect= new RedirectView("/home/agregarUsuario");
-        }
-        else {
-        usuarioModel.setActivo(true);
-        usuarioService.insertOrUpdate(usuarioModel);
-        }
-        return redirect;
-    }*/
-	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_AUDIT')")
 	@GetMapping("mostrarUsuarios")
 	 public ModelAndView mostrarUsuarios(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_LIST);
@@ -97,6 +90,21 @@ public class UsuarioController {
         model.addAttribute("perfiles", perfilService.traerPerfiles());
         return ViewRouteHelper.USUARIO_MODIF;
     }
+	@PostMapping("insertarUsuarioModif")
+	public ModelAndView insertarUsuarioModif(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel,BindingResult bindingResult) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_MODIF);
+		if(bindingResult.hasErrors()) {
+			mAV.addObject("perfiles", perfilService.traerPerfiles());
+			mAV.addObject("usuario",usuarioModel);
+		}
+		else {
+		usuarioModel.setActivo(true);
+		usuarioService.insertOrUpdate(usuarioModel);
+		ModelAndView mAVaux = new ModelAndView("redirect:/home/mostrarUsuarios");
+		mAV=mAVaux;
+		}
+		return mAV;
+	}
 	@GetMapping("eliminarUsuario/{idUsuario}")
     public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
 		UsuarioModel usuario = usuarioService.traerPorId(idUsuario);

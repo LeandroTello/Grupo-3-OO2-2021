@@ -46,7 +46,7 @@
 							<h3 class="text-center font-weight-light my-4">Modifique el usuario</h3>
 						</div>
 						<div class="card-body">
-							<form action="#" th:action="@{/home/insertUsuario}"
+							<form action="#" th:action="@{/home/insertarUsuarioModif}"
 								th:object="${usuario}" method="post">
 								<p>
 									Nombre: <input type="text"th:value="*{nombre}" th:field="*{nombre}" />
@@ -64,6 +64,7 @@
 								<p>
 									Numero de documento: <input type="text" th:value="*{dni}" th:field="*{dni}" />
 								</p>
+								<div th:if="${#fields.hasErrors('dni')}"class="alert alert-danger">El numero de documento ingresado es incorrecto</div>
 								<p>
 									Email: <input type="text" th:value="*{email}"th:field="*{email}" />
 								</p>

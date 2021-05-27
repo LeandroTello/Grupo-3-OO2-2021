@@ -66,6 +66,7 @@
 								<p>
 									Numero de documento: <input type="text" th:field="*{dni}" />
 								</p>
+								<div th:if="${#fields.hasErrors('dni')}"class="alert alert-danger">El numero de documento ingresado es incorrecto</div>
 								<p>
 									Email: <input type="text" th:field="*{email}" />
 								</p>
@@ -73,19 +74,20 @@
 									Nombre de usuario: <input type="text"
 										th:field="*{nombreUsuario}" />
 								</p>
+								<div th:if="${#fields.hasErrors('nombreUsuario')}" class="alert alert-danger">El usuario debe tener entre 5 y 20 caracteres</div>	
 								<p>
 									Clave: <input type="password" th:field="*{pass}" />
 								</p>
+								<div th:if="${#fields.hasErrors('pass')}" class="alert alert-danger"> La password debe tener entre 3 y 20 caracteres</div>
 								<p>
 									<select  th:field="*{idPerfil}">
 											<option th:each="p : ${perfiles}" 
 												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>										
 									</select>
 								</p>
-								<p th:if="${#fields.hasErrors('dni')}" th:errors ="*{dni}"> ERROR EN DNI</p>
-							<div th:if="${#fields.hasErrors('nombreUsuario')}" th:errors ="*{nombreUsuario}"class="alert alert-danger">ERROR EN USUARIO</div>								
-							<div th:if="${#fields.hasErrors('pass')}" th:errors ="*{pass}"class="alert alert-danger"> ERROR EN PASSWORD</div>
-								<br> <input type="submit"class="btn-create" value="Crear"/>
+								<br>				
+							<div><input type="submit"class="btn-create" value="Crear"/>								
+								</div>
 							</form>
 						</div>
 					</div>
