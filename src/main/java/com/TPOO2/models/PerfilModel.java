@@ -3,11 +3,14 @@ package com.TPOO2.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Size;
+
 import com.TPOO2.entities.UsuarioEntity;
 
 public class PerfilModel {
 
 	private int idPerfil;
+	@Size(min=5)
 	private String tipoPerfil;
 	private boolean activo;
 	private Set<UsuarioEntity> usuarios = new HashSet<UsuarioEntity>();

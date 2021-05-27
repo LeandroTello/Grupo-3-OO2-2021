@@ -5,10 +5,11 @@ public class ViewRouteHelper {
 	public final static String USER_LOGIN = "user/login";
 	public final static String USER_LOGOUT = "user/logout";
 	public final static String USER_ROOT = "redirect:/";
-	public final static String USUARIO_CARGAR ="agregarUsuario";
+	public final static String USUARIO_CARGAR ="/home/agregarUsuario";
 	public final static String USUARIO_LIST = "usuario/listadoUsuario";
-	public final static String USUARIO_MODIF = "usuario/modificar";
+	public final static String USUARIO_MODIF = "/home/modificar";
 	public final static String USUARIO_MOST = "/home/mostrarUsuarios";
+	
 	
 	// HOME
 	
@@ -18,7 +19,6 @@ public class ViewRouteHelper {
 	public final static String PERFIL_USER = "usuario/cargarUsuario";
 	public final static String PERFIL_LIST = "perfil/listadoPerfil";
 	public final static String PERFIL_MODIF = "perfil/modificar";
-
 	public final static String PERFIL_MOST = "/home/mostrarPerfiles";
 	
 

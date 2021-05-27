@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>UNLa</title>
+<link href="css/styles.css" rel="stylesheet" />
 <!-- Bootstrap core CSS -->
 <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <!-- Custom styles for this template -->
@@ -47,7 +48,7 @@
 								nuevo usuario</h3>
 						</div>
 						<div class="card-body">
-							<form action="#" th:action="@{/home/insertUsuario}"
+							<form action="#" th:action="@{/home/insertarUsuario}"
 								th:object="${usuario}" method="post">
 								<p>
 									Nombre: <input type="text" th:field="*{nombre}" />
@@ -78,13 +79,12 @@
 								<p>
 									<select  th:field="*{idPerfil}">
 											<option th:each="p : ${perfiles}" 
-												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>
-											<!--
-											<option th:value="ROLE_ADMIN" th:text="Administrador"></option>
-											<option th:value="ROLE_AUDIT" th:text="Auditor"></option>
-											-->
+												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>										
 									</select>
 								</p>
+								<p th:if="${#fields.hasErrors('dni')}" th:errors ="*{dni}"> ERROR EN DNI</p>
+							<div th:if="${#fields.hasErrors('nombreUsuario')}" th:errors ="*{nombreUsuario}"class="alert alert-danger">ERROR EN USUARIO</div>								
+							<div th:if="${#fields.hasErrors('pass')}" th:errors ="*{pass}"class="alert alert-danger"> ERROR EN PASSWORD</div>
 								<br> <input type="submit"class="btn-create" value="Crear"/>
 							</form>
 						</div>
@@ -93,6 +93,17 @@
 			</div>
 		</div>
 	</div>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	<!-- /.container -->
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">

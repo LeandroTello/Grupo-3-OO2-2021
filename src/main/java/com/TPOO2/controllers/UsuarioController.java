@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,12 +54,33 @@ public class UsuarioController {
 		return mAV;
 	}
 	
-	@PostMapping("insertUsuario")
-	public RedirectView insertarUsuario(@ModelAttribute("usuario") UsuarioModel usuarioModel) {
+	@PostMapping("insertarUsuario")
+	public RedirectView insertarUsuario(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel,BindingResult bindingResult) {
+		RedirectView redirect = new RedirectView();
+		if(bindingResult.hasErrors()) {
+			redirect.setUrl("redirect:/home/agregarUsuario");
+		}
+		else {
 		usuarioModel.setActivo(true);
 		usuarioService.insertOrUpdate(usuarioModel);
-		return new RedirectView(ViewRouteHelper.USUARIO_CARGAR);
+		redirect.setUrl("redirect:/home/insertarUsuario");
+		}
+		return new RedirectView("agregarUsuario");
 	}
+	
+	/*@PostMapping("insertUsuario")
+    public RedirectView insertarUsuario(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel, BindingResult result) {
+        RedirectView redirect= new RedirectView(ViewRouteHelper.PERFIL_USER);
+        if(result.hasErrors()) {
+            redirect= new RedirectView("/home/agregarUsuario");
+        }
+        else {
+        usuarioModel.setActivo(true);
+        usuarioService.insertOrUpdate(usuarioModel);
+        }
+        return redirect;
+    }*/
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_AUDIT')")
 	@GetMapping("mostrarUsuarios")
 	 public ModelAndView mostrarUsuarios(Model model) {
