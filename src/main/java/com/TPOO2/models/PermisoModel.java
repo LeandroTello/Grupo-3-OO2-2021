@@ -9,10 +9,10 @@ public abstract class PermisoModel {
 	protected int idPermiso;
 	protected PersonaModel pedido;
 	protected LocalDate fecha;
+	protected Set<LugarModel> desdeHasta = new HashSet<LugarModel>();
 	protected String fechaDesde;
 	protected String fechaHasta;
 	protected int salidaLlegada;
-	protected Set<LugarModel> desdeHasta = new HashSet<LugarModel>();
 	
 	public PermisoModel(int idPermiso, PersonaModel pedido, LocalDate fecha, Set<LugarModel> desdeHasta) {
 		super();
