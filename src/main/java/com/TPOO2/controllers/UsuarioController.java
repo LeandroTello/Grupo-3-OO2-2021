@@ -103,7 +103,7 @@ public class UsuarioController {
 		}
 		return mAV;
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarUsuario/{idUsuario}")
     public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
 		UsuarioModel usuario = usuarioService.traerPorId(idUsuario);
