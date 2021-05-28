@@ -17,8 +17,8 @@ public class UsuarioModel {
 	
 	private Tipo tipo;
 	
-	@Min(value=40000)
-	@Max(value=100000000)
+	@Min(value=1000000)
+	@Max(value=10000000)
 	private long dni;
 	
 	@Email()

@@ -12,13 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import com.TPOO2.entities.UsuarioEntity;
+
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "perfil"/*,uniqueConstraints = @UniqueConstraint(columnNames= {"permiso","usuarios"})*/)
+@Table(name = "perfil")
 public class PerfilEntity {
 
 	@Id
@@ -26,10 +25,10 @@ public class PerfilEntity {
 	private int idPerfil;
 
 	
-	@Column(name = "tipoPerfil")
+	@Column(name = "tipoPerfil", nullable = false)
 	private String tipoPerfil;
 
-	@Column(name = "activo")
+	@Column(name = "activo", nullable = false )
 	private boolean activo;
 
 	@Column(name = "createdat")

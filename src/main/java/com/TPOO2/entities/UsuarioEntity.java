@@ -20,19 +20,19 @@ public class UsuarioEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
 
-	@Column(name = "nombre")
+	@Column(name = "nombre", nullable = false, length = 20)
 	private String nombre;
 
-	@Column(name = "apellido")
+	@Column(name = "apellido", nullable = false, length = 20)
 	private String apellido;
 
-	@Column(name = "tipo")
+	@Column(name = "tipo", nullable = false)
 	private Tipo tipo;
 
-	@Column(name = "dni")
+	@Column(name = "dni", nullable = false)
 	private long dni;
 
-	@Column(name = "email")
+	@Column(name = "email", nullable = false, length = 45)
 	private String email;
 
 	@Column(name = "nombreUsuario", unique = true, nullable = false, length = 45)
