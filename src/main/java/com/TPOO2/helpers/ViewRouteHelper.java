@@ -7,7 +7,7 @@ public class ViewRouteHelper {
 	public final static String USER_ROOT = "redirect:/";
 	public final static String USUARIO_CARGAR ="/home/agregarUsuario";
 	public final static String USUARIO_LIST = "usuario/listadoUsuario";
-	public final static String USUARIO_MODIF = "/usuario/modificar";
+	public final static String USUARIO_MODIF = "usuario/modificar";
 	public final static String USUARIO_MOST = "/home/mostrarUsuarios";
 	
 	

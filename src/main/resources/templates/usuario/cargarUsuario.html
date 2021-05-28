@@ -70,6 +70,7 @@
 								<p>
 									Email: <input type="text" th:field="*{email}" />
 								</p>
+								<div th:if="${#fields.hasErrors('email')}" class="alert alert-danger">El email ingresado no es valido</div>	
 								<p>
 									Nombre de usuario: <input type="text"
 										th:field="*{nombreUsuario}" />

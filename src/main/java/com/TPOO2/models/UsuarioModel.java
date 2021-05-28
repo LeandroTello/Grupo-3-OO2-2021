@@ -1,5 +1,6 @@
 package com.TPOO2.models;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -20,12 +21,13 @@ public class UsuarioModel {
 	@Max(value=100000000)
 	private long dni;
 	
+	@Email()
 	private String email;
 	
 	@Size(min=5,max=20)
 	private String nombreUsuario;
 	
-	@Size(min=3,max=20)
+	@Size(min=3)
 	private String pass;
 	
 	private boolean activo;
@@ -163,6 +165,4 @@ public class UsuarioModel {
 		this.perfil = perfil;
 	}
 	
-
-
 }

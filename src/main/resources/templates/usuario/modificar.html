@@ -68,6 +68,7 @@
 								<p>
 									Email: <input type="text" th:value="*{email}"th:field="*{email}" />
 								</p>
+								<div th:if="${#fields.hasErrors('email')}" class="alert alert-danger">El email ingresado no es valido</div>	
 								<p>
 									<input type="hidden" th:value="*{pass}" th:field="*{pass}" />
 									<input type="hidden" th:value="*{idUsuario}" th:field="*{idUsuario}" />
@@ -81,7 +82,7 @@
 												th:value="${p.idPerfil}" th:text="${p.tipoPerfil}"></option>
 									</select>
 								</p>
-								<br> <input type="submit"class="btn-modify" value="modificar"/>
+								<br> <input type="submit"class="btn-modify" value="Modificar"/>
 							</form>
 						</div>
 					</div>

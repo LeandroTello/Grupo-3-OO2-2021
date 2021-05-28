@@ -49,10 +49,7 @@ public class UsuarioController {
 	private IPerfilService perfilService;
 	
 	@GetMapping("agregarUsuario")
-	public ModelAndView agregarUsuario(Model model,@RequestParam(name="error",required=false) String error,
-			@RequestParam(name="logout", required=false) String logout) {
-		model.addAttribute("error", error);
-		model.addAttribute("logout", logout);
+	public ModelAndView agregarUsuario(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_USER);
 		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		mAV.addObject("usuario",new UsuarioModel());
@@ -90,6 +87,7 @@ public class UsuarioController {
         model.addAttribute("perfiles", perfilService.traerPerfiles());
         return ViewRouteHelper.USUARIO_MODIF;
     }
+	
 	@PostMapping("insertarUsuarioModif")
 	public ModelAndView insertarUsuarioModif(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel,BindingResult bindingResult) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_MODIF);
@@ -105,6 +103,7 @@ public class UsuarioController {
 		}
 		return mAV;
 	}
+	
 	@GetMapping("eliminarUsuario/{idUsuario}")
     public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
 		UsuarioModel usuario = usuarioService.traerPorId(idUsuario);
@@ -113,6 +112,7 @@ public class UsuarioController {
         usuarioService.insertOrUpdate(usuario);
         return new RedirectView(ViewRouteHelper.USUARIO_MOST);
     }
+	
 	@GetMapping("pdf")
     public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
         response.setContentType("application/pdf");
