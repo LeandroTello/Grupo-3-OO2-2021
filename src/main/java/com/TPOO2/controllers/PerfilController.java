@@ -2,6 +2,7 @@ package com.TPOO2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class PerfilController {
 	@Qualifier("perfilService")
 	private IPerfilService perfilService;
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("agregarPerfil")
 	 public ModelAndView agregarPerfil(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_INSERT);
@@ -48,6 +49,7 @@ public class PerfilController {
 		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		return mAV;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("modificarPerfil/{idPerfil}")
     public String editar(@PathVariable int idPerfil,Model model) {
         PerfilModel perfil = perfilService.traerPorId(idPerfil);
@@ -55,7 +57,7 @@ public class PerfilController {
         return ViewRouteHelper.PERFIL_MODIF;
     }
 
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarPerfil/{idPerfil}")
     public RedirectView eliminar(@PathVariable int idPerfil,Model model) {
         PerfilModel perfil = perfilService.traerPorId(idPerfil);
