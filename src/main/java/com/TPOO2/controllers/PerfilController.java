@@ -53,7 +53,7 @@ public class PerfilController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("modificarPerfil/{idPerfil}")
     public String editar(@PathVariable int idPerfil,Model model) {
-        PerfilModel perfil = perfilService.traerPorId(idPerfil);
+        PerfilModel perfil = perfilService.traerPerfilModelPorId(idPerfil);
         model.addAttribute("perfil", perfil);
         return ViewRouteHelper.PERFIL_MODIFICAR;
     }
@@ -61,7 +61,7 @@ public class PerfilController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarPerfil/{idPerfil}")
     public RedirectView eliminar(@PathVariable int idPerfil,Model model) {
-        PerfilModel perfil = perfilService.traerPorId(idPerfil);
+        PerfilModel perfil = perfilService.traerPerfilModelPorId(idPerfil);
         perfil.setActivo(false);
         perfilService.insertOrUpdate(perfil);
         return new RedirectView(ViewRouteHelper.PERFIL_MOSTRAR);
