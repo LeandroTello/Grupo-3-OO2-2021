@@ -49,6 +49,23 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	}
 	
 	@Override
+	public List<UsuarioEntity> traerUsuariosParaPDF(){
+		List<UsuarioEntity> usuariosBuscados = new ArrayList<>();
+		List<UsuarioModel> usuariosModel = this.traerUsuarios();
+		
+		for(UsuarioModel usuario : usuariosModel) {
+			if(usuario.isActivo()) {
+				UsuarioEntity usuarioAAgregar = usuarioConverter.modelToEntity(usuario);
+				usuariosBuscados.add(usuarioAAgregar);
+				
+			}
+			
+		}
+		return usuariosBuscados;
+	
+	}
+	
+	@Override
     public UsuarioEntity traerUsuarioEntityPorId(int id) {
         return usuarioRepository.traerUsuarioEntityPorId(id);
     }

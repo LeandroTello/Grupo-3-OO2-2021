@@ -120,7 +120,7 @@ public class UsuarioController {
         String headerValue = "attachment; filename=users" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        List<UsuarioEntity> usuarios = usuarioService.getAll();
+        List<UsuarioEntity> usuarios = usuarioService.traerUsuariosParaPDF();
 
         UsuariosPDF exporter = new UsuariosPDF(usuarios);
         exporter.export(response);

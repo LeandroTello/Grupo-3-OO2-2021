@@ -34,6 +34,21 @@ public class PerfilService implements IPerfilService {
 		}
 		return models;
 	}
+	
+	public List<PerfilEntity>traerPerfilesParaPDF(){
+	List<PerfilEntity> usuariosBuscados = new ArrayList<>();
+	List<PerfilModel> usuariosModel = this.traerPerfiles();
+	
+	for(PerfilModel usuario : usuariosModel) {
+		if(usuario.isActivo()) {
+			PerfilEntity usuarioAAgregar = perfilConverter.modelToEntity(usuario);
+			usuariosBuscados.add(usuarioAAgregar);
+			
+		}
+		
+	}
+	return usuariosBuscados;
+}
 
 
 	@Override

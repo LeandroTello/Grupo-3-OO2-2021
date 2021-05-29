@@ -15,4 +15,5 @@ public interface IUsuarioService {
 	public List<UsuarioModel> traerUsuarios();
 	public UsuarioEntity traerUsuarioEntityPorId(int id);
 	public UsuarioModel traerUsuarioModelPorId(int id);
+	public List<UsuarioEntity> traerUsuariosParaPDF();
 }

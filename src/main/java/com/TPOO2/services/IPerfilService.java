@@ -14,5 +14,6 @@ public interface IPerfilService {
 	public boolean remove(int id);
 	public PerfilEntity traerPerfilEntityPorId(int id);
 	public PerfilModel traerPerfilModelPorId(int id);
+	public List<PerfilEntity>traerPerfilesParaPDF();
 
 }
