@@ -78,7 +78,7 @@ public class UsuarioController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("modificarUsuario/{idUsuario}")
     public String editar(@PathVariable int idUsuario,Model model) {
-        UsuarioModel usuario = usuarioService.traerPorId(idUsuario);
+        UsuarioModel usuario = usuarioService.traerUsuarioModelPorId(idUsuario);
         model.addAttribute("usuario", usuario);
         model.addAttribute("perfiles", perfilService.traerPerfiles());
         return ViewRouteHelper.USUARIO_MODIF;
@@ -103,7 +103,7 @@ public class UsuarioController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarUsuario/{idUsuario}")
     public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
-		UsuarioModel usuario = usuarioService.traerPorId(idUsuario);
+		UsuarioModel usuario = usuarioService.traerUsuarioModelPorId(idUsuario);
 		usuario.setIdPerfil(usuario.getPerfil().getIdPerfil());
 		usuario.setActivo(false);
         usuarioService.insertOrUpdate(usuario);

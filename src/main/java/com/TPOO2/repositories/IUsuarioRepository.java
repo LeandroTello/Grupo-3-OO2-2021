@@ -16,5 +16,5 @@ public interface IUsuarioRepository extends JpaRepository<UsuarioEntity, Seriali
 	public abstract UsuarioEntity traerPorNombre(@Param("nombreUsuario")String nombreUsuario);
 	
 	@Query("SELECT u FROM UsuarioEntity u JOIN FETCH u.perfil WHERE u.idUsuario = (:idUsuario)")
-	public abstract UsuarioEntity traerPorID(@Param("idUsuario")int idUsuario);
+	public abstract UsuarioEntity traerUsuarioEntityPorId(@Param("idUsuario")int idUsuario);
 }

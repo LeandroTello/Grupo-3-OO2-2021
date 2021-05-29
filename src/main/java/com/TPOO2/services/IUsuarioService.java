@@ -13,6 +13,6 @@ public interface IUsuarioService {
 	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel);
 	public boolean remove(int id);
 	public List<UsuarioModel> traerUsuarios();
-	public UsuarioEntity traerPorID(int id);
-	public UsuarioModel traerPorId(int id);
+	public UsuarioEntity traerUsuarioEntityPorId(int id);
+	public UsuarioModel traerUsuarioModelPorId(int id);
 }

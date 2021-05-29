@@ -49,13 +49,13 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	}
 	
 	@Override
-    public UsuarioEntity traerPorID(int id) {
-        return usuarioRepository.traerPorID(id);
+    public UsuarioEntity traerUsuarioEntityPorId(int id) {
+        return usuarioRepository.traerUsuarioEntityPorId(id);
     }
 	
 	@Override
-	public UsuarioModel traerPorId(int id) {
-	        return usuarioConverter.entityToModel(this.traerPorID(id));
+	public UsuarioModel traerUsuarioModelPorId(int id) {
+	        return usuarioConverter.entityToModel(this.traerUsuarioEntityPorId(id));
 	}
 	
 	@Override
