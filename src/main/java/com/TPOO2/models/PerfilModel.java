@@ -18,24 +18,6 @@ public class PerfilModel {
 	public PerfilModel() {
 	}
 
-	public PerfilModel(String tipoPerfil, Set<UsuarioEntity> usuarios) {
-		super();
-		this.tipoPerfil = tipoPerfil;
-		this.usuarios = usuarios;
-	}
-	public PerfilModel(int idPerfil,String tipoPerfil, Set<UsuarioEntity> usuarios) {
-		super();
-		this.setIdPerfil(idPerfil);
-		this.tipoPerfil = tipoPerfil;
-		this.usuarios = usuarios;
-	}
-	
-	public PerfilModel(String tipoPerfil,int idPerfil) {
-		super();
-		this.setIdPerfil(idPerfil);
-		this.tipoPerfil = tipoPerfil;
-	}
-	
 
 	public PerfilModel(int idPerfil, String tipoPerfil, boolean activo, Set<UsuarioEntity> usuarios) {
 		super();

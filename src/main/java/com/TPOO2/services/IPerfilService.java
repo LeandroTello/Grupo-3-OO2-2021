@@ -12,7 +12,7 @@ public interface IPerfilService {
 	public List<PerfilModel> traerPerfiles();
 	public PerfilModel insertOrUpdate(PerfilModel perfilModel);
 	public boolean remove(int id);
-	public PerfilEntity traerPorID(int id);
-	public PerfilModel traerPorId(int id);
+	public PerfilEntity traerPerfilEntityPorId(int id);
+	public PerfilModel traerPerfilModelPorId(int id);
 
 }

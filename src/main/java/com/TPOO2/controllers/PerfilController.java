@@ -29,7 +29,7 @@ public class PerfilController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("agregarPerfil")
 	 public ModelAndView agregarPerfil(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_INSERT);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_AGREGAR);
 		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		mAV.addObject("perfil", new PerfilModel());
 		return mAV;
@@ -49,12 +49,13 @@ public class PerfilController {
 		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		return mAV;
 	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("modificarPerfil/{idPerfil}")
     public String editar(@PathVariable int idPerfil,Model model) {
         PerfilModel perfil = perfilService.traerPorId(idPerfil);
         model.addAttribute("perfil", perfil);
-        return ViewRouteHelper.PERFIL_MODIF;
+        return ViewRouteHelper.PERFIL_MODIFICAR;
     }
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -63,7 +64,7 @@ public class PerfilController {
         PerfilModel perfil = perfilService.traerPorId(idPerfil);
         perfil.setActivo(false);
         perfilService.insertOrUpdate(perfil);
-        return new RedirectView(ViewRouteHelper.PERFIL_MOST);
+        return new RedirectView(ViewRouteHelper.PERFIL_MOSTRAR);
     }
 	
 }

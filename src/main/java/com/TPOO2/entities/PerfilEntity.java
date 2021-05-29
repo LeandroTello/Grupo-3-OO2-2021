@@ -52,6 +52,7 @@ public class PerfilEntity {
 		this.activo = activo;
 		this.usuarios = usuarios;
 	}
+	
 	public PerfilEntity(String tipoPerfil, boolean activo, Set<UsuarioEntity> usuarios) {
 		super();
 		this.tipoPerfil = tipoPerfil;

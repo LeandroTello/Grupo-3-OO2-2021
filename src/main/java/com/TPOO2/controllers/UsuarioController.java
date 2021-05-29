@@ -12,8 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,14 +21,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.TPOO2.entities.UsuarioEntity;
 import com.TPOO2.helpers.ViewRouteHelper;
-import com.TPOO2.models.PerfilModel;
 import com.TPOO2.models.UsuarioModel;
 import com.TPOO2.pdf.UsuariosPDF;
 import com.TPOO2.services.IPerfilService;
@@ -50,7 +46,7 @@ public class UsuarioController {
 	
 	@GetMapping("agregarUsuario")
 	public ModelAndView agregarUsuario(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_USER);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_AGREGAR);
 		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		mAV.addObject("usuario",new UsuarioModel());
 		return mAV;
@@ -58,7 +54,7 @@ public class UsuarioController {
 	
 	@PostMapping("insertarUsuario")
 	public ModelAndView insertarUsuario(@Valid @ModelAttribute("usuario") UsuarioModel usuarioModel,BindingResult bindingResult) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_USER);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_AGREGAR);
 		if(bindingResult.hasErrors()) {
 			mAV.addObject("perfiles", perfilService.traerPerfiles());
 			mAV.addObject("usuario",usuarioModel);
@@ -103,6 +99,7 @@ public class UsuarioController {
 		}
 		return mAV;
 	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarUsuario/{idUsuario}")
     public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
@@ -110,7 +107,7 @@ public class UsuarioController {
 		usuario.setIdPerfil(usuario.getPerfil().getIdPerfil());
 		usuario.setActivo(false);
         usuarioService.insertOrUpdate(usuario);
-        return new RedirectView(ViewRouteHelper.USUARIO_MOST);
+        return new RedirectView(ViewRouteHelper.USUARIO_MOSTRAR);
     }
 	
 	@GetMapping("pdf")

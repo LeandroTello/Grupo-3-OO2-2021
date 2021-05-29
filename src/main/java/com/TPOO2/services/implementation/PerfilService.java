@@ -2,7 +2,6 @@ package com.TPOO2.services.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -55,13 +54,13 @@ public class PerfilService implements IPerfilService {
 
 
 	@Override
-    public PerfilEntity traerPorID(int id) {
-        return perfilRepository.traerPorID(id);
+    public PerfilEntity traerPerfilEntityPorId(int id) {
+        return perfilRepository.traerPerfilEntityPorId(id);
     }
 	
 	@Override
-	public PerfilModel traerPorId(int id) {
-	        return perfilConverter.entityToModel(this.traerPorID(id));
+	public PerfilModel traerPerfilModelPorId(int id) {
+	        return perfilConverter.entityToModel(this.traerPerfilEntityPorId(id));
 	}
 
 			

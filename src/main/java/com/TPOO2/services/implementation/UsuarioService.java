@@ -19,7 +19,6 @@ import com.TPOO2.converters.PerfilConverter;
 import com.TPOO2.converters.UsuarioConverter;
 import com.TPOO2.entities.UsuarioEntity;
 import com.TPOO2.funciones.Funciones;
-import com.TPOO2.models.PerfilModel;
 import com.TPOO2.models.UsuarioModel;
 import com.TPOO2.repositories.IPerfilRepository;
 import com.TPOO2.repositories.IUsuarioRepository;

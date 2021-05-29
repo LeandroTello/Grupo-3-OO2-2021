@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
-import com.TPOO2.models.UsuarioModel;
 
 @Controller
 @RequestMapping("/")
