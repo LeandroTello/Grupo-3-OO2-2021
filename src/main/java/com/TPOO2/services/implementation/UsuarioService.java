@@ -52,17 +52,17 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	public List<UsuarioEntity> traerUsuariosParaPDF(){
 		List<UsuarioEntity> usuariosBuscados = new ArrayList<>();
 		List<UsuarioModel> usuariosModel = this.traerUsuarios();
-		
+		int index=0;
 		for(UsuarioModel usuario : usuariosModel) {
 			if(usuario.isActivo()) {
-				UsuarioEntity usuarioAAgregar = usuarioConverter.modelToEntity(usuario);
-				usuariosBuscados.add(usuarioAAgregar);
-				
+				PerfilEntity perfil = perfilConverter.modelToEntity(usuario.getPerfil()); // Al convertirlo pierde el perfil 
+                UsuarioEntity usuarioAAgregar = usuarioConverter.modelToEntity(usuario); // asi que lo guardo antes para setearlo.
+                usuariosBuscados.add(usuarioAAgregar);
+                usuariosBuscados.get(index).setPerfil(perfil);
 			}
-			
+			index++;			
 		}
-		return usuariosBuscados;
-	
+		return usuariosBuscados;	
 	}
 	
 	@Override

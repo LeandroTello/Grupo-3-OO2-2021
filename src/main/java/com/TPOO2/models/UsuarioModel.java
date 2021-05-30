@@ -36,7 +36,7 @@ public class UsuarioModel {
 	}
 	
 	public UsuarioModel(int idUsuario,String nombre, String apellido, Tipo tipo, long dni, String email, String nombreUsuario,
-			String pass,PerfilModel perfil) {
+			String pass,boolean activo,PerfilModel perfil) {
 		super();
 		this.setIdUsuario(idUsuario);
 		this.nombre = nombre;
@@ -46,6 +46,7 @@ public class UsuarioModel {
 		this.email = email;
 		this.nombreUsuario = nombreUsuario;
 		this.pass = pass;
+		this.activo = activo;
 		this.perfil = perfil;
 	}
 

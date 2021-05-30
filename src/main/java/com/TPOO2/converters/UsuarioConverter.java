@@ -21,7 +21,7 @@ public class UsuarioConverter {
 	public UsuarioModel entityToModel(UsuarioEntity usuarioEntity) {
 		return new UsuarioModel(usuarioEntity.getIdUsuario(),usuarioEntity.getNombre(), usuarioEntity.getApellido(), usuarioEntity.getTipo(),
 				usuarioEntity.getDni(), usuarioEntity.getEmail(), usuarioEntity.getNombreUsuario(),
-				usuarioEntity.getPass(),perfilConverter.entityToModel(usuarioEntity.getPerfil()));
+				usuarioEntity.getPass(),usuarioEntity.isActivo(),perfilConverter.entityToModel(usuarioEntity.getPerfil()));
 	}
 
 	public UsuarioEntity modelToEntity(UsuarioModel usuarioModel) {
