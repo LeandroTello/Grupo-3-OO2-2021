@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TPOO2.funciones.Funciones;
 import com.TPOO2.helpers.ViewRouteHelper;
 
 @Controller
@@ -20,7 +21,7 @@ public class LoginController {
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.HOME_INDEX);
 		User user = (User) SecurityContextHolder.getContext().getAuthentication ().getPrincipal();
-		modelAndView.addObject("username", user.getUsername());
+		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
 	
@@ -32,6 +33,7 @@ public class LoginController {
 		model.addAttribute("logout", logout);
 		return ViewRouteHelper.USER_LOGIN;
 	}
+	
 	
 	@GetMapping("/logout")
 	public String logout(Model model,

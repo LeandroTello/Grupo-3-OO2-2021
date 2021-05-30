@@ -108,11 +108,11 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
-		com.TPOO2.entities.UsuarioEntity usuario = usuarioRepository.traerPorNombre(nombreUsuario);
+		UsuarioEntity usuario = usuarioRepository.traerPorNombre(nombreUsuario);
 		return buildUser(usuario, buildGrantedAuthorities(usuario.getPerfil()));
 	}
 
-	private User buildUser(com.TPOO2.entities.UsuarioEntity usuarioEntity, List<GrantedAuthority> grantedAuthorities) {
+	private User buildUser(UsuarioEntity usuarioEntity, List<GrantedAuthority> grantedAuthorities) {
 		return new User(usuarioEntity.getNombreUsuario(), usuarioEntity.getPass(), usuarioEntity.isActivo(), true, true,
 				true, grantedAuthorities);
 	}
