@@ -53,9 +53,6 @@ public class PerfilService implements IPerfilService {
 
 	@Override
 	public PerfilModel insertOrUpdate(PerfilModel perfilModel) {
-		if(!perfilModel.isActivo()) {
-			perfilModel.setActivo(true);
-		}
 		PerfilEntity perfilEntity = perfilRepository.save(perfilConverter.modelToEntity(perfilModel));
 		return perfilConverter.entityToModel(perfilEntity);
 	}

@@ -52,6 +52,7 @@
 						<div class="card-body">
 							<form action="#" th:action="@{/home/insertPerfil}"
 								th:object="${perfil}" method="post">
+								<input type="hidden" name="activo" value="true" />	
 								<br> <br>
 								<p>
 									Descripcion: <input type="text" th:value="*{tipoPerfil}" th:field="*{tipoPerfil}" />

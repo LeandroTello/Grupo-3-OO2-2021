@@ -59,6 +59,7 @@
 						<div class="card-body">
 							<form action="#" th:action="@{/home/insertarUsuario}"
 								th:object="${usuario}" method="post">
+								<input type="hidden" name="activo" value="true" />	
 								<p>
 									Nombre: <input type="text" th:field="*{nombre}" />
 								</p>

@@ -91,9 +91,6 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 
 	@Override
 	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel) {	
-		if(!usuarioModel.isActivo()) {
-			usuarioModel.setActivo(true);
-		}
 		if(usuarioModel.getPass().length()<40)usuarioModel.setPass(Funciones.encriptarPass(usuarioModel.getPass()));
 		UsuarioEntity usuarioEntity = usuarioRepository.save(usuarioConverter.modelToEntity(usuarioModel));
 		return usuarioConverter.entityToModel(usuarioEntity);
