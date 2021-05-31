@@ -41,7 +41,6 @@ public class PerfilController {
 	@GetMapping("agregarPerfil")
 	 public ModelAndView agregarPerfil(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_AGREGAR);
-		mAV.addObject("perfiles", perfilService.traerPerfiles());
 		mAV.addObject("perfil", new PerfilModel());
 		return mAV;
 	}
