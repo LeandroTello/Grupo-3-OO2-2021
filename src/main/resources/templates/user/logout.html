@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <title>UNLa</title>
 <link href="css/styles.css" rel="stylesheet" />
+<link href="css/modern-business.css" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
@@ -24,14 +25,14 @@
 	<!-- Page Content -->
 	<div class="container">
 		<div class="container">
-			<h1 class="display-10 alert alert-info">Logout Successfully.</h1>
+			<h1 class="display-10 alert alert-info">Se cerro la sesion</h1>
 		</div>
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-5">
 					<div class="card shadow-lg border-0 rounded-lg mt-5">
 						<div class="card-header">
-							<h3 class="text-center font-weight-light my-4">Login</h3>
+							<h3 class="text-center font-weight-light my-4">Inicio de sesion</h3>
 						</div>
 						<div class="card-body">
 							<form th:action="@{/loginprocess}" method="post">
@@ -47,11 +48,18 @@
 								</div>
 								<div
 									class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-									<input type="submit" />
+									<input type="submit" value="Entrar"/>
 									<div th:if="${error != null}" class="alert alert-danger">
 										Password incorrecta</div>
 								</div>
 							</form>
+							<br>
+							<form th:action="@{/loginprocess}" method="post">
+								<input type="hidden" name="username" id="username" value="invitado" />
+								<input type="hidden" name="password" id="password" value="invitado"  />
+								<input type="submit" value="Continuar como invitado" class="btn-modify" />
+							</form>
+							
 						</div>
 					</div>
 				</div>

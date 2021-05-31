@@ -30,7 +30,7 @@
 				<div class="col-lg-5">
 					<div class="card shadow-lg border-0 rounded-lg mt-5">
 						<div class="card-header">
-							<h3 class="text-center font-weight-light my-4">Login</h3>
+							<h3 class="text-center font-weight-light my-4">Inicio de sesion</h3>
 						</div>
 						<div class="card-body">
 
@@ -47,7 +47,7 @@
 								</div>
 								<div
 									class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-									<input type="submit" />
+									<input type="submit" value="Entrar"/>
 									<div th:if="${error != null}" class="alert alert-danger">
 										Password incorrecta, por favor ingresela nuevamente</div>
 
@@ -57,7 +57,7 @@
 							<form th:action="@{/loginprocess}" method="post">
 								<input type="hidden" name="username" id="username" value="invitado" />
 								<input type="hidden" name="password" id="password" value="invitado"  />
-								<input type="submit" value="Continuar Sin Loguearse" class="btn-modify" />
+								<input type="submit" value="Continuar como invitado" class="btn-modify" />
 							</form>
 						</div>
 					</div>

@@ -12,7 +12,7 @@
    position:absolute;
    bottom:0;
    width:100%;
-   height:100px;   /* Height of the footer */
+   height:100px;   
    background:#343a40;
 }
 </style>
@@ -26,34 +26,42 @@
 			<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<div sec:authorize="hasRole('ROLE_ADMIN')">
+					<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
 					<li class="nav-item dropdown">
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Perfiles</a>
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+						<div sec:authorize="hasRole('ROLE_ADMIN')">
 						<a class="dropdown-item" href="/home/agregarPerfil">Alta de perfil</a>
+						</div>
+						<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
 						<a class="dropdown-item" href="/home/mostrarPerfiles">Lista de perfiles</a>
 						</div>
+						</div>
 					</li>
+					</div>
+					<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
 					<li class="nav-item dropdown">
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Usuario</a>
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+						<div sec:authorize="hasRole('ROLE_ADMIN')">
 						<a class="dropdown-item" href="/home/agregarUsuario">Alta de usuario</a>
+						</div>
 						<a class="dropdown-item" href="/home/mostrarUsuarios">Lista de usuarios</a>
 						</div>
 					</li>
-				 </div>
+				 	</div>
 					   <!-- Desplegable -->
 					<li class="nav-item dropdown">
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
 							<form th:action="@{/logout}" method="post">
-								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Logout" />
+								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Salir" />
 							</form>
-						 <!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->	
-						</div>
+						 <!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->
 						
-					</li>
-					
+						</div>
+						 </li>
+						</div>
 				</ul>
 			</div> 
 		</div>
@@ -64,9 +72,6 @@
     <!-- Footer -->
     <div id="footer">
 	<div class="m-0 text-center text-white">
-	<div sec:authorize="hasRole('ROLE_ADMIN')">
-  This content is only shown to administrators.
-</div>
 	<br>Copyright &copy;Grupo 3
                 Objetos 2 2021
                   </div>

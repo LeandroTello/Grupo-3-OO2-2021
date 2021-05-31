@@ -28,7 +28,7 @@ public class PerfilService implements IPerfilService {
 	public List<PerfilModel> traerPerfiles() {
 		List<PerfilModel> models = new ArrayList<PerfilModel>();
 		for (PerfilEntity perfil : perfilRepository.findAll()) {
-			if(perfil.isActivo()) {
+			if(perfil.isActivo() && !perfil.getTipoPerfil().equals("ROLE_GUEST")) {
 			models.add(perfilConverter.entityToModel(perfil));
 			}
 		}

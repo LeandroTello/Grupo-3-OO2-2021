@@ -85,8 +85,12 @@ table.center {
 										<th style="text-align:center">Numero de documento</th>
 										<th style="text-align:center">Nombre de usuario</th>
 										<th style="text-align:center">Tipo de perfil</th>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<th style="text-align:center">Modificar</th>
+										</div>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<th style="text-align:center">Eliminar</th>
+										</div>
 									</tr>
 								</thead>
 								<tbody>
@@ -98,8 +102,12 @@ table.center {
 										<td style="text-align:center"><span th:text="${usuario.dni}"></span></td>
 										<td style="text-align:center"><span th:text="${usuario.nombreUsuario}"></span></td>
 										<td style="text-align:center"><span th:text="${usuario.perfil.tipoPerfil}"></span></td>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<td style="text-align:center"><a th:href="@{modificarUsuario/}+${usuario.idUsuario}"class="btn-modify" >Modificar</a></td>
+										</div>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<td style="text-align:center"><a th:href="@{eliminarUsuario/}+${usuario.idUsuario}"class="btn-delete">Eliminar</a></td>
+										</div>
 									</tr>
 								</tbody>
 							</table>

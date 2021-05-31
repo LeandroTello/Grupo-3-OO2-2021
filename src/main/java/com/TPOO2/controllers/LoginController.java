@@ -17,6 +17,7 @@ import com.TPOO2.helpers.ViewRouteHelper;
 @RequestMapping("/")
 public class LoginController {
 	
+	
 	@GetMapping("")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.HOME_INDEX);

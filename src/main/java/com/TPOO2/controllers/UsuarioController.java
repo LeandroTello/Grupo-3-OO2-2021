@@ -44,6 +44,7 @@ public class UsuarioController {
 	@Qualifier("perfilService")
 	private IPerfilService perfilService;
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("agregarUsuario")
 	public ModelAndView agregarUsuario(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_AGREGAR);
@@ -68,6 +69,7 @@ public class UsuarioController {
 		return mAV;
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')")
 	@GetMapping("mostrarUsuarios")
 	 public ModelAndView mostrarUsuarios(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USUARIO_LIST);

@@ -80,7 +80,7 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 		List<UsuarioModel> models = new ArrayList<UsuarioModel>();
 		int index = 0;
 		for (UsuarioEntity usuario : usuarioRepository.findAll()) {
-			if(usuario.isActivo()) {
+			if(usuario.isActivo() && !usuario.getNombreUsuario().equals("invitado")) {
 			models.add(usuarioConverter.entityToModel(usuario));
 			models.get(index).setPerfil(perfilConverter.entityToModel(usuario.getPerfil()));
 			index ++;

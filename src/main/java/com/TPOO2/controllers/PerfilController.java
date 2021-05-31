@@ -46,7 +46,6 @@ public class PerfilController {
 		return mAV;
 	}
 
-	
 	@PostMapping("insertPerfil")
 	public RedirectView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
 		perfilModel.setActivo(true);
@@ -54,6 +53,7 @@ public class PerfilController {
 		return new RedirectView(ViewRouteHelper.PERFIL_CARGAR);
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')")
 	@GetMapping("mostrarPerfiles")
 	 public ModelAndView mostrarPerfiles(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERFIL_LIST);

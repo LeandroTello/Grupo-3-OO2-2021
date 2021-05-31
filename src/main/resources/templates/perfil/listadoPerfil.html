@@ -59,17 +59,23 @@
 								<thead>
 									<tr>
 										<th>Descripcion</th>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<th>Modificar</th>
+										</div>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<th>Eliminar</th>
+										</div>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="perfil : ${perfiles}">
 										<td><span th:text="${perfil.tipoPerfil}"></span></td>
-
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<td><a th:href="@{modificarPerfil/}+${perfil.idPerfil}"	class="btn-modify">Modificar</a></td>
+										</div>
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
 										<td><a th:href="@{eliminarPerfil/}+${perfil.idPerfil}"class="btn-delete">Eliminar</a></td>
-
+										</div>
 									</tr>
 								</tbody>
 							</table>

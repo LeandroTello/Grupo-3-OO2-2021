@@ -60,7 +60,7 @@ public class PerfilesPDF {
 		font.setSize(18);
 		font.setColor(Color.BLUE);
 
-		Paragraph p = new Paragraph("Lista de usuarios\n\n\n", font);
+		Paragraph p = new Paragraph("Lista de perfiles\n\n\n", font);
 		p.setAlignment(Paragraph.ALIGN_CENTER);
 
 		document.add(p);
