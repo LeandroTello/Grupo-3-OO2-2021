@@ -45,10 +45,9 @@ public class PerfilController {
 		mAV.addObject("perfil", new PerfilModel());
 		return mAV;
 	}
-
+	
 	@PostMapping("insertPerfil")
 	public RedirectView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
-		perfilModel.setActivo(true);
 		perfilService.insertOrUpdate(perfilModel);
 		return new RedirectView(ViewRouteHelper.PERFIL_CARGAR);
 	}
@@ -73,8 +72,7 @@ public class PerfilController {
 	@GetMapping("eliminarPerfil/{idPerfil}")
     public RedirectView eliminar(@PathVariable int idPerfil,Model model) {
         PerfilModel perfil = perfilService.traerPerfilModelPorId(idPerfil);
-        perfil.setActivo(false);
-        perfilService.insertOrUpdate(perfil);
+        perfilService.deletePerfil(perfil);
         return new RedirectView(ViewRouteHelper.PERFIL_MOSTRAR);
     }
 	

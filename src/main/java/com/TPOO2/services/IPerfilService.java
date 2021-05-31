@@ -12,6 +12,7 @@ public interface IPerfilService {
 	public List<PerfilModel> traerPerfiles();
 	public PerfilModel insertOrUpdate(PerfilModel perfilModel);
 	public boolean remove(int id);
+	public PerfilModel deletePerfil(PerfilModel perfilModel);
 	public PerfilEntity traerPerfilEntityPorId(int id);
 	public PerfilModel traerPerfilModelPorId(int id);
 	public List<PerfilEntity>traerPerfilesParaPDF();

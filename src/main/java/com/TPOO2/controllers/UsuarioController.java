@@ -61,7 +61,6 @@ public class UsuarioController {
 			mAV.addObject("usuario",usuarioModel);
 		}
 		else {
-		usuarioModel.setActivo(true);
 		usuarioService.insertOrUpdate(usuarioModel);
 		ModelAndView mAVaux = new ModelAndView("redirect:/home/mostrarUsuarios");
 		mAV=mAVaux;
@@ -94,7 +93,6 @@ public class UsuarioController {
 			mAV.addObject("usuario",usuarioModel);
 		}
 		else {
-		usuarioModel.setActivo(true);
 		usuarioService.insertOrUpdate(usuarioModel);
 		ModelAndView mAVaux = new ModelAndView("redirect:/home/mostrarUsuarios");
 		mAV=mAVaux;
@@ -107,8 +105,7 @@ public class UsuarioController {
     public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
 		UsuarioModel usuario = usuarioService.traerUsuarioModelPorId(idUsuario);
 		usuario.setIdPerfil(usuario.getPerfil().getIdPerfil());
-		usuario.setActivo(false);
-        usuarioService.insertOrUpdate(usuario);
+		usuarioService.deleteUsuario(usuario);
         return new RedirectView(ViewRouteHelper.USUARIO_MOSTRAR);
     }
 	

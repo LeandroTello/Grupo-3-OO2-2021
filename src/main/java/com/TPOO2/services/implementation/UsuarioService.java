@@ -91,6 +91,9 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 
 	@Override
 	public UsuarioModel insertOrUpdate(UsuarioModel usuarioModel) {	
+		if(!usuarioModel.isActivo()) {
+			usuarioModel.setActivo(true);
+		}
 		if(usuarioModel.getPass().length()<40)usuarioModel.setPass(Funciones.encriptarPass(usuarioModel.getPass()));
 		UsuarioEntity usuarioEntity = usuarioRepository.save(usuarioConverter.modelToEntity(usuarioModel));
 		return usuarioConverter.entityToModel(usuarioEntity);
@@ -104,6 +107,12 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	@Override
+	public UsuarioModel deleteUsuario(UsuarioModel usuarioModel) {
+		usuarioModel.setActivo(false);
+		return this.insertOrUpdate(usuarioModel);
 	}
 
 	@Override
