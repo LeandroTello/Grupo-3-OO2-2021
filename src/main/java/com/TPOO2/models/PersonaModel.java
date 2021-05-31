@@ -1,13 +1,19 @@
 package com.TPOO2.models;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 public class PersonaModel {
 
 	private int idPersona;
 	
+	@Size(min=5,max=20)
 	private String nombre;
 	
+	@Size(min=5,max=20)
 	private String apellido;
 	
+	@Min(value=1000000)
 	private long dni;
 	
 	public PersonaModel () {}

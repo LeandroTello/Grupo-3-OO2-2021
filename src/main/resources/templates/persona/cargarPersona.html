@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>UNLa</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/modern-business.css" rel="stylesheet" />
+    <style>
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:100px;   /* Height of the footer */
+   background:#343a40;
+}
+</style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Inicio</a>
+			<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					   <!-- Desplegable -->
+					<li class="nav-item dropdown">
+						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Logout" />
+							</form>
+							<!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->	
+						</div>
+					</li>
+					
+				</ul>
+			</div> 
+		</div>
+	</nav>
+	
+	<div class="container">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="card shadow-lg border-100 rounded-lg mt-5">
+						<div class="card-header">
+							<h3 class="text-center font-weight-light my-4">Ingrese la
+								nueva persona</h3>
+						</div>
+						<div class="card-body">
+							<form action="#" th:action="@{/home/insertarPersona}"
+								th:object="${persona}" method="post">
+																
+								<br>
+								
+								<p>
+									Nombre: <input type="text" th:field="*{nombre}" />
+									<div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger">El nombre debe tener entre 5 y 20 caracteres</div>
+								</p>
+								
+								<p>
+									Apellido: <input type="text" th:field="*{apellido}" />
+								<div th:if="${#fields.hasErrors('apellido')}" class="alert alert-danger">El apellido debe tener entre 5 y 20 caracteres</div>
+									
+								</p>
+								<p>
+									Numero de documento: <input type="text" th:field="*{dni}" />
+									<div th:if="${#fields.hasErrors('dni')}"class="alert alert-danger">El numero de documento ingresado es incorrecto</div>
+								</p>
+								<br> <input type="submit"class="btn-create" value="Crear"/> <br>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+       <br>
+            <br>
+            <br>
+
+    <!-- /.container -->
+    <!-- Footer -->
+    <div id="footer">
+	<div class="m-0 text-center text-white">
+	<br>Copyright &copy;Grupo 3
+                Objetos 2 2021
+                  </div>
+       </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>

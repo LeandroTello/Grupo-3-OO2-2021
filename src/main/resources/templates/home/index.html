@@ -18,8 +18,8 @@
 </style>
   </head>
   <body>
-    <!-- Navigation -->
     
+    <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="/">Inicio</a>
@@ -50,6 +50,15 @@
 						</div>
 					</li>
 				 	</div>
+				 	<div sec:authorize="hasRole('ROLE_GUEST')">
+				 	<li class="nav-item dropdown">
+						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Persona</a>
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+						<div sec:authorize="hasRole('ROLE_GUEST')">
+						<a class="dropdown-item" href="/home/agregarPersona">Alta de persona</a>
+					</li>
+					</div>
+					</div>
 					   <!-- Desplegable -->
 					<li class="nav-item dropdown">
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
@@ -57,11 +66,11 @@
 							<form th:action="@{/logout}" method="post">
 								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Salir" />
 							</form>
-						 <!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->
-						
+						 <!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->	
+						 
 						</div>
-						 </li>
-						</div>
+					</li>
+					
 				</ul>
 			</div> 
 		</div>

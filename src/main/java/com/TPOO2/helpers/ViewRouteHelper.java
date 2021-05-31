@@ -22,9 +22,17 @@ public class ViewRouteHelper {
 	public final static String PERFIL_MODIFICAR = "perfil/modificar";
 	public final static String PERFIL_MOSTRAR = "/home/mostrarPerfiles";
 	
+	// PERSONA
+	
+	public final static String PERSONA_AGREGAR = "persona/cargarPersona";
+	
 	// HOME
 	
 	public final static String HOME_INDEX = "home/index";
+	
+	// REDIRECT
+	
+	public final static String INICIO = "/";
 
 
 }
