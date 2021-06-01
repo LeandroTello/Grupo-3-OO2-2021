@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "rodado")
@@ -14,6 +15,7 @@ public class RodadoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRodado;
+	
 	
 	@Column(name = "dominio", nullable = false)
 	private String dominio;
@@ -27,6 +29,7 @@ public class RodadoEntity {
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
 	}
+	public RodadoEntity() {}
 
 	public int getIdRodado() {
 		return idRodado;

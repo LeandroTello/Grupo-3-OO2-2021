@@ -30,9 +30,14 @@ public class ViewRouteHelper {
 	
 	public final static String HOME_INDEX = "home/index";
 	
+
 	// REDIRECT
 	
 	public final static String INICIO = "/";
+
+
+	//RODADO
+	public final static String RODADO_AGREGAR = "rodado/IngresarRodado";
 
 
 }

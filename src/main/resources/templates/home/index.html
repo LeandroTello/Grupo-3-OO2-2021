@@ -22,8 +22,20 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="/">Inicio</a>
+			<a class="navbar-brand" href="/">Inicio</a>			
 			<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<div sec:authorize="hasRole('ROLE_GUEST')">
+					<li class="nav-item dropdown">
+						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Rodado</a>
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+						<div sec:authorize="hasRole('ROLE_GUEST')">
+						<a class="dropdown-item" href="/rodado/ingresarRodado">Ingresar rodado</a>
+						</div>						
+						</div>
+					</li>
+					</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">

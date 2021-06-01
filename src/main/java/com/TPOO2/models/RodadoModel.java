@@ -1,16 +1,25 @@
 package com.TPOO2.models;
 
+import javax.validation.constraints.Size;
+
 public class RodadoModel {
 
 	private int idRodado;
-	private String dominio;
-	private String vehiculo;
 	
+	@Size(min = 5, max = 9)	
+	private String dominio;
+	
+	@Size(min = 3, max = 20)
+	private String vehiculo;
+
 	public RodadoModel(int idRodado, String dominio, String vehiculo) {
 		super();
 		this.idRodado = idRodado;
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
+	}
+
+	public RodadoModel() {
 	}
 
 	public int getIdRodado() {
@@ -41,5 +50,5 @@ public class RodadoModel {
 	public String toString() {
 		return "RodadoModel [idRodado=" + idRodado + ", dominio=" + dominio + ", vehiculo=" + vehiculo + "]";
 	}
-	
+
 }
