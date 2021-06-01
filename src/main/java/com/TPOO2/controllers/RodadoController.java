@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,16 +29,22 @@ public class RodadoController {
 
 	@PreAuthorize("hasRole('ROLE_GUEST')")
 	@GetMapping("ingresarRodado")
-	public ModelAndView agregarUsuario(Model model) {
+	public ModelAndView ingresarRodado(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RODADO_AGREGAR);
 		mAV.addObject("rodado",new RodadoModel());
 		return mAV;
 	}
 	
 	@PostMapping("insertarRodado")
-	public ModelAndView insertarRodado(@Valid @ModelAttribute("rodado") RodadoModel rodadoModel,Model model) {
+	public ModelAndView insertarRodado(@Valid @ModelAttribute("rodado") RodadoModel rodadoModel,BindingResult bindingResult) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RODADO_AGREGAR);
+		if(bindingResult.hasErrors()) {
+			mAV.addObject("rodado",rodadoModel);
+		}
+		else {
 		rodadoService.insertOrUpdate(rodadoModel);
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USER_ROOT);
+		mAV.setViewName(ViewRouteHelper.USER_ROOT);
+		}
 		return mAV;
 	}
 	

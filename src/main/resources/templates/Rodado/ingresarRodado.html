@@ -55,11 +55,13 @@
 								th:object="${rodado}" method="post">						
 								<br>
 								<p>
-									Dominio: <input type="text" th:field="*{dominio}" />
+									Dominio: <input type="text" th:field="*{dominio}" pattern="[A-Z]{3}[\d]{3}|[A-Z]{2}[\d]{3}[A-Z]{2}" title="ingrese un formato de patente valido" />
 								</p>
+								<div th:if="${#fields.hasErrors('dominio')}" class="alert alert-danger">La patente ingrasada no es la correcta</div>	
 								<p>
-									Model de vehiculo: <input type="text" th:field="*{vehiculo}" />
+									Model de vehiculo: <input type="text" th:field="*{vehiculo}" pattern="[A-Za-z]{2-20}[\d]{1-5}" />
 								</p>
+								<div th:if="${#fields.hasErrors('vehiculo')}" class="alert alert-danger">El modelo no pudo ser identificado</div>	
 								<br> <input type="submit"class="btn-create" value="Crear"/> <br>
 
 							</form>
