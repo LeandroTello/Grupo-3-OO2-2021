@@ -27,6 +27,7 @@ public class RodadoEntity {
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
 	}
+	public RodadoEntity() {}
 
 	public int getIdRodado() {
 		return idRodado;

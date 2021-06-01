@@ -25,6 +25,8 @@ public class ViewRouteHelper {
 	// HOME
 	
 	public final static String HOME_INDEX = "home/index";
-
+	
+	//RODADO
+	public final static String RODADO_AGREGAR = "rodado/IngresarRodado";
 
 }

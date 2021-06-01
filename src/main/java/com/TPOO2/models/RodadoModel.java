@@ -12,6 +12,7 @@ public class RodadoModel {
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
 	}
+	public RodadoModel() {}
 
 	public int getIdRodado() {
 		return idRodado;
