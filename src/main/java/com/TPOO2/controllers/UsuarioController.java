@@ -62,8 +62,7 @@ public class UsuarioController {
 		}
 		else {
 		usuarioService.insertOrUpdate(usuarioModel);
-		ModelAndView mAVaux = new ModelAndView("redirect:/home/mostrarUsuarios");
-		mAV=mAVaux;
+		mAV.setViewName(ViewRouteHelper.USER_ROOT);
 		}
 		return mAV;
 	}
@@ -94,8 +93,8 @@ public class UsuarioController {
 		}
 		else {
 		usuarioService.insertOrUpdate(usuarioModel);
-		ModelAndView mAVaux = new ModelAndView("redirect:/home/mostrarUsuarios");
-		mAV=mAVaux;
+		mAV.setViewName(ViewRouteHelper.USER_ROOT);
+
 		}
 		return mAV;
 	}
