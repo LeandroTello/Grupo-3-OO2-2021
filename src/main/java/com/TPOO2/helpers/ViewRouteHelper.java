@@ -39,6 +39,8 @@ public class ViewRouteHelper {
 	
 	public final static String PERMISO_PERIODO = "permisos/agregarPermisoPeriodo";
 	public final static String PERMISO_DIA = "permisos/agregarPermisoDiario";
+	public final static String PERMISO_RODADO ="permisos/permisoPorRodado";
+	public final static String PERMISO_RODADO_LISTA ="permisos/listaPermisosPorRodado";
 
 	//RODADO
 	public final static String RODADO_AGREGAR = "rodado/IngresarRodado";

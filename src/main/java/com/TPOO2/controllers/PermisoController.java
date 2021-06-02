@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,6 +90,20 @@ public class PermisoController {
 			permisoService.insertOrUpdate(permisoPeriodoModel);
 			mAV.setViewName(ViewRouteHelper.USER_ROOT);
 		}
+		return mAV;
+	}
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
+	@GetMapping("permisoPorRodado")
+	public ModelAndView permisoPorRodado(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_RODADO);
+		mAV.addObject("rodado", new RodadoModel());
+		return mAV;
+	}
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
+	@PostMapping("listaDeRodado")
+	public ModelAndView traer(Model model,@Valid @ModelAttribute("rodado")RodadoModel rodadoModel) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_RODADO_LISTA);
+		mAV.addObject("permisos", permisoService.traerPermisosPorDominio(rodadoModel.getDominio()));
 		return mAV;
 	}
 }

@@ -1,6 +1,7 @@
 package com.TPOO2.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,5 @@ public interface IPermisoService {
 	public PermisoPeriodoModel insertOrUpdate(PermisoPeriodoModel permisoPeriodoModel);
 	public PermisoDiarioModel insertOrUpdate(PermisoDiarioModel permisoDiarioModel);
 	public boolean remove(int id);
+	public Set<PermisoPeriodoModel> traerPermisosPorDominio(String dominio);
 }

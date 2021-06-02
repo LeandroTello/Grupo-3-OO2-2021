@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>UNLa</title>
+<!-- Bootstrap core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="/css/modern-business.css" rel="stylesheet" />
+<style>
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:100px;   /* Height of the footer */
+   background:#343a40;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+</style>
+
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.container {
+  padding: auto 40px;
+}
+</style>
+</head>
+<body>
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Inicio</a>
+			<button aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation"
+				class="navbar-toggler navbar-toggler-right"
+				data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<!-- Desplegable -->
+					<li class="nav-item dropdown"><a aria-expanded="false"
+						aria-haspopup="true" class="nav-link dropdown-toggle"
+						data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
+						<div aria-labelledby="navbarDropdownBlog"
+							class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor: pointer"
+									type="submit" value="Logout" />
+							</form>
+							<!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->
+						</div></li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+							<h3 class="text-center font-weight-light my-4">Lista de usuarios activos</h3>
+						<div class="card-body">
+							<table class="center">
+								<thead>
+									<tr>
+										<th style="text-align:center">Nombre</th>
+										<th style="text-align:center">Apellido</th>
+										<th style="text-align:center">Numero de documento</th>
+										<th style="text-align:center">Fecha de tramite</th>
+										<th style="text-align:center">Duracion</th>
+										<th style="text-align:center">Modelo de rodado</th>
+										<th style="text-align:center">dominio de rodado</th>
+										<th style="text-align:center">Lugar de partida</th>
+										<th style="text-align:center">Lugar de llegada</th>
+										<th style="text-align:center">vacaciones</th>																				
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="permiso : ${permisos}">
+										<td style="text-align:center"><span th:text="${permiso.pedido.nombre}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.pedido.apellido}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.pedido.dni}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.fecha}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.cantDias}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.rodado.vehiculo}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.rodado.dominio}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.desdeHasta[0].lugar}"></span></td>
+										<td style="text-align:center"><span th:text="${permiso.desdeHasta[1].lugar}"></span></td>
+									</tr>					
+								</tbody>
+							</table>							
+				</div>
+	<!-- /.container -->
+	<!-- Footer -->
+	<div id="footer">
+	<div class="m-0 text-center text-white">
+	<br>Copyright &copy;Grupo 3
+                Objetos 2 2021
+                  </div>
+       </div>
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+</body>
+</html>
