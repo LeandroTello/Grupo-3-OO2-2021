@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "permisoPeriodo")
 @PrimaryKeyJoinColumn(referencedColumnName="idPermiso")
-public class PermisoPeriodo extends PermisoEntity {
+public class PermisoPeriodoEntity extends PermisoEntity {
 
 	@Column(name = "cantDias", nullable = false)
 	private int cantDias;
@@ -26,12 +26,16 @@ public class PermisoPeriodo extends PermisoEntity {
 	@JoinColumn(name = "rodado_id", nullable = false)	
 	private RodadoEntity rodado;
 
-	public PermisoPeriodo(int idPermiso, PersonaEntity pedido, LocalDate fecha, Set<LugarEntity> desdeHasta,
+	public PermisoPeriodoEntity(int idPermiso, PersonaEntity pedido, LocalDate fecha, Set<LugarEntity> desdeHasta,
 			int cantDias, boolean vacaciones, RodadoEntity rodado) {
 		super(idPermiso, pedido, fecha, desdeHasta);
 		this.cantDias = cantDias;
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;
+	}
+	
+	public PermisoPeriodoEntity() {
+		super();
 	}
 
 	public int getCantDias() {

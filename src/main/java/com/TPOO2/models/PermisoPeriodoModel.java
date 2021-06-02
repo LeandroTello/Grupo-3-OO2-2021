@@ -16,6 +16,10 @@ public class PermisoPeriodoModel extends PermisoModel {
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;
 	}
+	
+	public PermisoPeriodoModel() {
+		super();
+	}
 
 	public int getCantDias() {
 		return cantDias;

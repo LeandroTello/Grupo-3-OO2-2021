@@ -50,6 +50,8 @@ public abstract class PermisoEntity {
 		this.fecha = fecha;
 		this.desdeHasta = desdeHasta;
 	}
+	
+	public PermisoEntity() {}
 
 	public int getIdPermiso() {
 		return idPermiso;

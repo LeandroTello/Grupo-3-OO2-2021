@@ -17,6 +17,8 @@ public abstract class PermisoModel {
 		this.fecha = fecha;
 		this.desdeHasta = desdeHasta;
 	}
+	
+	public PermisoModel() {}
 
 	public int getIdPermiso() {
 		return idPermiso;
