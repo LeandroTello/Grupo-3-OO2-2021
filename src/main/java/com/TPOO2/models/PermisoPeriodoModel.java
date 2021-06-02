@@ -12,6 +12,7 @@ public class PermisoPeriodoModel extends PermisoModel {
 	private String dominio;
 	private int idDesde;
 	private int idHasta;
+	private String fechaInicial;
 	
 	public PermisoPeriodoModel(int idPermiso, PersonaModel pedido, LocalDate fecha, Set<LugarModel> desdeHasta,
 			int cantDias, boolean vacaciones, RodadoModel rodado) {
@@ -82,6 +83,15 @@ public class PermisoPeriodoModel extends PermisoModel {
 
 	public void setIdHasta(int idHasta) {
 		this.idHasta = idHasta;
+	}
+	
+
+	public String getFechaInicial() {
+		return fechaInicial;
+	}
+
+	public void setFechaInicial(String fechaInicial) {
+		this.fechaInicial = fechaInicial;
 	}
 
 	@Override

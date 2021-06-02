@@ -88,7 +88,7 @@ public class PermisoService implements IPermisoService {
 	}
 
 	public PermisoPeriodoModel insertOrUpdate(PermisoPeriodoModel permisoPeriodoModel) {
-		permisoPeriodoModel.setFecha(LocalDate.now());
+		permisoPeriodoModel.setFecha(LocalDate.parse(permisoPeriodoModel.getFechaInicial()));
 		permisoPeriodoModel.setPedido(personaConverter.entityToModel(personaRepository.traerPersonaEntityPorDni(permisoPeriodoModel.getDni())));
 		permisoPeriodoModel.getDesdeHasta().add(lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(permisoPeriodoModel.getIdDesde())));
 		permisoPeriodoModel.getDesdeHasta().add(lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(permisoPeriodoModel.getIdHasta())));

@@ -63,6 +63,10 @@
 								</p>
 								<div th:if="${#fields.hasErrors('dni')}" class="alert alert-danger">La persona no se encuentra cargada en el sistema</div>
 								seleccione su lugar de partida
+								
+								<p>
+									Fecha: <input type="date" th:field="*{fechaInicial}"/>
+								</p>
 								<p>
 									<select  th:field="*{idDesde}">
 											<option th:each="lug : ${lugares}" 
