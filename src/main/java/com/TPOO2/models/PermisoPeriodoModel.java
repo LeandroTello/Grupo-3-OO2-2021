@@ -8,6 +8,10 @@ public class PermisoPeriodoModel extends PermisoModel {
 	private int cantDias;
 	private boolean vacaciones;
 	private RodadoModel rodado;
+	private long dni;
+	private String dominio;
+	private int idDesde;
+	private int idHasta;
 	
 	public PermisoPeriodoModel(int idPermiso, PersonaModel pedido, LocalDate fecha, Set<LugarModel> desdeHasta,
 			int cantDias, boolean vacaciones, RodadoModel rodado) {
@@ -43,6 +47,41 @@ public class PermisoPeriodoModel extends PermisoModel {
 
 	public void setRodado(RodadoModel rodado) {
 		this.rodado = rodado;
+	}
+	
+
+	public long getDni() {
+		return dni;
+	}
+
+	public void setDni(long dni) {
+		this.dni = dni;
+	}
+	
+
+	public String getDominio() {
+		return dominio;
+	}
+
+	public void setDominio(String dominio) {
+		this.dominio = dominio;
+	}
+	
+
+	public int getIdDesde() {
+		return idDesde;
+	}
+
+	public void setIdDesde(int idDesde) {
+		this.idDesde = idDesde;
+	}
+
+	public int getIdHasta() {
+		return idHasta;
+	}
+
+	public void setIdHasta(int idHasta) {
+		this.idHasta = idHasta;
 	}
 
 	@Override

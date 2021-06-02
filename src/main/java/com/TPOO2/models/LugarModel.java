@@ -10,7 +10,7 @@ public class LugarModel {
 	
 	public LugarModel(int idLugar, String lugar, String codigoPostal) {
 		super();
-		this.idLugar = idLugar;
+		this.setIdLugar(idLugar);
 		this.lugar = lugar;
 		this.codigoPostal = codigoPostal;
 	}
@@ -38,6 +38,18 @@ public class LugarModel {
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idLugar;
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+        return this.idLugar==((LugarModel)obj).getIdLugar();
+    }
 
 	@Override
 	public String toString() {

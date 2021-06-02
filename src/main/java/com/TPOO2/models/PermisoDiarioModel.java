@@ -13,6 +13,9 @@ public class PermisoDiarioModel extends PermisoModel {
 		this.motivo = motivo;
 	}
 
+	public PermisoDiarioModel() {
+	}
+
 	public String getMotivo() {
 		return motivo;
 	}

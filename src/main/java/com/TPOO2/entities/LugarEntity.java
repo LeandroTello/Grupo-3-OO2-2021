@@ -27,10 +27,11 @@ public class LugarEntity {
 	
 	public LugarEntity(int idLugar, String lugar, String codigoPostal) {
 		super();
-		this.idLugar = idLugar;
+		this.setIdLugar(idLugar);
 		this.lugar = lugar;
 		this.codigoPostal = codigoPostal;
 	}
+	public LugarEntity() {}
 
 	public int getIdLugar() {
 		return idLugar;

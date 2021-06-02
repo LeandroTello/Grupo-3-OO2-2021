@@ -39,7 +39,7 @@ public abstract class PermisoEntity {
 			joinColumns = @JoinColumn(name="FK_permiso", nullable = false),
 			inverseJoinColumns = @JoinColumn(name="FK_lugar", nullable = false)
 	)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	protected Set<LugarEntity> desdeHasta;
 	
 	

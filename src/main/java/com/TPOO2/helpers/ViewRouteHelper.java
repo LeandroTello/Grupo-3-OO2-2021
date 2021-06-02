@@ -34,7 +34,11 @@ public class ViewRouteHelper {
 	// REDIRECT
 	
 	public final static String INICIO = "/";
-
+	
+	// PERMISO
+	
+	public final static String PERMISO_PERIODO = "permisos/agregarPermisoPeriodo";
+	public final static String PERMISO_DIA = "permisos/agregarPermisoDiario";
 
 	//RODADO
 	public final static String RODADO_AGREGAR = "rodado/IngresarRodado";

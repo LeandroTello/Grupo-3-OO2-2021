@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>UNLa</title>
+<link href="css/styles.css" rel="stylesheet" />
+<!-- Bootstrap core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="/css/modern-business.css" rel="stylesheet" />
+<style>
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:100px;   /* Height of the footer */
+   background:#343a40;
+}
+</style>
+</head>
+<body>
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Inicio</a>
+			<button aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation"
+				class="navbar-toggler navbar-toggler-right"
+				data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<!-- Desplegable -->
+					<li class="nav-item dropdown"><a aria-expanded="false"
+						aria-haspopup="true" class="nav-link dropdown-toggle"
+						data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
+						<div aria-labelledby="navbarDropdownBlog"
+							class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor: pointer"
+									type="submit" value="Logout" />
+							</form>
+						</div></li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="card shadow-lg border-2 rounded-lg mt-5">
+						<div class="card-header">
+							<h3 class="text-center font-weight-light my-4">Ingrese los datos solicitados</h3>
+						</div>
+						<div class="card-body">
+							<form action="#" th:action="@{/permiso/insertarPermisoPeriodo}"
+								th:object="${periodo}" method="post">
+								<p>
+									Numero de documento: <input type="text" th:field="*{dni}" value = "" required/>
+								</p>
+								<div th:if="${#fields.hasErrors('dni')}" class="alert alert-danger">La persona no se encuentra cargada en el sistema</div>
+								seleccione su lugar de partida
+								<p>
+									<select  th:field="*{idDesde}">
+											<option th:each="lug : ${lugares}" 
+												th:value="${lug.idLugar}" th:text="${lug.lugar}"></option>										
+									</select>
+								</p>
+								seleccione su lugar de llegada
+								<p>
+									<select  th:field="*{idHasta}">
+											<option th:each="lug : ${lugares}" 
+												th:value="${lug.idLugar}" th:text="${lug.lugar}"></option>										
+									</select>
+								</p>
+								<p>
+								Es un permiso por vacaciones?   <input type="checkbox" name="mycheckbox" th:checked="${vacaciones}" />
+								</p>
+								<p>
+									Cantidad De dias solicitados: <input type="number" min="1" max="30" th:field="*{cantDias}" />
+								</p>
+								<p>
+									Dominio del rodado: <input type="text" th:field="*{dominio}" />
+								</p>
+								<div th:if="${#fields.hasErrors('dominio')}" class="alert alert-danger">El rodado no se encuentra cargado en el sistema</div>
+								
+								<br>				
+							<div><input type="submit"class="btn-create" value="Crear"/>								
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br>
+	
+	<!-- /.container -->
+	<!-- Footer -->
+	<div id="footer">
+	<div class="m-0 text-center text-white">
+	<br>Copyright &copy;Grupo 3
+                Objetos 2 2021
+                  </div>
+       </div>
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

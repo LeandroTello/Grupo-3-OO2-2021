@@ -21,6 +21,7 @@ public class PermisoDiarioEntity extends PermisoEntity {
 		super(idPermiso, pedido, fecha, desdeHasta);
 		this.motivo = motivo;
 	}
+	public PermisoDiarioEntity() {}
 
 	public String getMotivo() {
 		return motivo;

@@ -36,6 +36,17 @@
 						</div>
 					</li>
 					</div>
+					<div sec:authorize="hasRole('ROLE_GUEST')">
+					<li class="nav-item dropdown">
+						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Permiso</a>
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+						<div sec:authorize="hasRole('ROLE_GUEST')">
+						<a class="dropdown-item" href="/permiso/agregarPermisoPeriodo">Solicitar permiso para un periodo determinado</a>
+						<a class="dropdown-item" href="/permiso/agregarPermisoDiario">Solicitar permiso para transitar el dia de hoy</a>
+						</div>						
+						</div>
+					</li>
+					</div>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
