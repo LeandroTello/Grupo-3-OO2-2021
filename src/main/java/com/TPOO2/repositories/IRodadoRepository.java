@@ -1,6 +1,7 @@
 package com.TPOO2.repositories;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +16,5 @@ public interface IRodadoRepository extends JpaRepository<RodadoEntity, Serializa
 	@Query("SELECT p FROM RodadoEntity p where p.idRodado=(:idRodado)")
 	public abstract RodadoEntity traerRodadoEntityPorId(@Param("idRodado")int idRodado);
 	@Query("SELECT p FROM RodadoEntity p where p.dominio=(:dominio)")
-	public abstract RodadoEntity traerRodadoEntityPorDominio(@Param("dominio")String dominio);
+	public abstract RodadoEntity traerRodadoEntityPorDominio(@Param("dominio")String dominio);	
 }

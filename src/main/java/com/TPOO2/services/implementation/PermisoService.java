@@ -2,7 +2,9 @@ package com.TPOO2.services.implementation;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -100,6 +102,14 @@ public class PermisoService implements IPermisoService {
 		return permisoPeriodoConverter.entityToModel(permisoPeriodoEntity);
 
 	}
+	public Set<PermisoPeriodoModel> traerPermisosPorDominio(String dominio) {
+		Set<PermisoPeriodoModel> models = new HashSet<PermisoPeriodoModel>();
+		for (PermisoPeriodoEntity permiso : permisoRepository.traerPermisosEntityPorDominio(dominio)) {
+			models.add(permisoPeriodoConverter.entityToModel((PermisoPeriodoEntity) permiso));
+		}
+		return models;		
+	}
+	
 
 	public boolean remove(int id) {
 		try {
