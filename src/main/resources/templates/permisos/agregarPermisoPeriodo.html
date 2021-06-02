@@ -62,18 +62,19 @@
 									Numero de documento: <input type="text" th:field="*{dni}" value = "" required/>
 								</p>
 								<div th:if="${#fields.hasErrors('dni')}" class="alert alert-danger">La persona no se encuentra cargada en el sistema</div>
-								seleccione su lugar de partida
-								
 								<p>
 									Fecha: <input type="date" th:field="*{fechaInicial}"/>
 								</p>
+								<div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger">La fecha no es valida</div>
+								
+								Seleccione su lugar de partida			
 								<p>
 									<select  th:field="*{idDesde}">
 											<option th:each="lug : ${lugares}" 
 												th:value="${lug.idLugar}" th:text="${lug.lugar}"></option>										
 									</select>
 								</p>
-								seleccione su lugar de llegada
+								Seleccione su lugar de llegada
 								<p>
 									<select  th:field="*{idHasta}">
 											<option th:each="lug : ${lugares}" 
@@ -81,10 +82,10 @@
 									</select>
 								</p>
 								<p>
-								Es un permiso por vacaciones?   <input type="checkbox" name="mycheckbox" th:checked="${vacaciones}" />
+								Es un permiso por vacaciones?   <input type="checkbox" name="vacaciones" th:checked="${vacaciones}" />
 								</p>
 								<p>
-									Cantidad De dias solicitados: <input type="number" min="1" max="30" th:field="*{cantDias}" />
+									Cantidad de dias solicitados: <input type="number" min="1" max="30" th:field="*{cantDias}" />
 								</p>
 								<p>
 									Dominio del rodado: <input type="text" th:field="*{dominio}" />

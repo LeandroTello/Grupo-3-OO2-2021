@@ -81,7 +81,10 @@ public class PermisoService implements IPermisoService {
 	}
 
 	public PermisoDiarioModel insertOrUpdate(PermisoDiarioModel permisoDiarioModel) {
-
+		permisoDiarioModel.setFecha(LocalDate.parse(permisoDiarioModel.getFechaInicial()));
+		permisoDiarioModel.setPedido(personaConverter.entityToModel(personaRepository.traerPersonaEntityPorDni(permisoDiarioModel.getDni())));
+		permisoDiarioModel.getDesdeHasta().add(lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(permisoDiarioModel.getIdDesde())));
+		permisoDiarioModel.getDesdeHasta().add(lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(permisoDiarioModel.getIdHasta())));
 		PermisoDiarioEntity permisoDiarioEntity = permisoRepository.save(permisoDiarioConverter.modelToEntity(permisoDiarioModel));
 		return permisoDiarioConverter.entityToModel(permisoDiarioEntity);
 
@@ -93,7 +96,7 @@ public class PermisoService implements IPermisoService {
 		permisoPeriodoModel.getDesdeHasta().add(lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(permisoPeriodoModel.getIdDesde())));
 		permisoPeriodoModel.getDesdeHasta().add(lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(permisoPeriodoModel.getIdHasta())));
 		permisoPeriodoModel.setRodado(rodadoConverter.entityToModel(rodadoRepository.traerRodadoEntityPorDominio(permisoPeriodoModel.getDominio())));
-		PermisoPeriodoEntity permisoPeriodoEntity =permisoRepository.save(permisoPeriodoConverter.modelToEntity(permisoPeriodoModel));
+		PermisoPeriodoEntity permisoPeriodoEntity = permisoRepository.save(permisoPeriodoConverter.modelToEntity(permisoPeriodoModel));
 		return permisoPeriodoConverter.entityToModel(permisoPeriodoEntity);
 
 	}

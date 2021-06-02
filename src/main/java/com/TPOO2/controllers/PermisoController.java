@@ -1,5 +1,7 @@
 package com.TPOO2.controllers;
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PermisoDiarioModel;
 import com.TPOO2.models.PermisoPeriodoModel;
-import com.TPOO2.models.RodadoModel;
-import com.TPOO2.repositories.IPermisoRepository;
 import com.TPOO2.repositories.IPersonaRepository;
 import com.TPOO2.repositories.IRodadoRepository;
 import com.TPOO2.services.ILugarService;
@@ -43,12 +42,15 @@ public class PermisoController {
 	@Autowired
 	@Qualifier("permisoService")
 	private IPermisoService permisoService;
+	
 	@Autowired
 	@Qualifier("lugarService")
 	private ILugarService lugarService;
+	
 	@Autowired
 	@Qualifier("personaRepository")
 	private IPersonaRepository personaRepository;
+	
 	@Autowired
 	@Qualifier("rodadoRepository")
 	private IRodadoRepository rodadoRepository;
@@ -62,16 +64,9 @@ public class PermisoController {
 		return mAV;
 	}
 
-	@PreAuthorize("hasRole('ROLE_GUEST')")
-	@GetMapping("agregarPermisoDiario")
-	public ModelAndView agregarPermisoDiario(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_DIA);
-		mAV.addObject("diario", new PermisoDiarioModel());
-		return mAV;
-	}
 
 	@PostMapping("insertarPermisoPeriodo")
-	public ModelAndView agregarPermisoDiario(@Valid @ModelAttribute("periodo")PermisoPeriodoModel permisoPeriodoModel, Model model, BindingResult bindingResult) {
+	public ModelAndView insertarPermisoPeriodo(@Valid @ModelAttribute("periodo")PermisoPeriodoModel permisoPeriodoModel, Model model, BindingResult bindingResult) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERIODO);
 		if(personaRepository.traerPersonaEntityPorDni(permisoPeriodoModel.getDni())==null) {
 			FieldError error = new FieldError("periodo","dni","");
@@ -81,12 +76,48 @@ public class PermisoController {
 			FieldError error = new FieldError("periodo","dominio","");
 			bindingResult.addError(error);
 		}
+		if(LocalDate.parse(permisoPeriodoModel.getFechaInicial()).isBefore(LocalDate.now())) {
+			FieldError error = new FieldError("periodo","fecha","");
+			bindingResult.addError(error);
+		}
 		if(bindingResult.hasErrors()) {
 			mAV.addObject("lugares", lugarService.traerLugares());
 			mAV.addObject("periodo", permisoPeriodoModel);
 		}
 		else {
 			permisoService.insertOrUpdate(permisoPeriodoModel);
+			mAV.setViewName(ViewRouteHelper.USER_ROOT);
+		}
+		return mAV;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_GUEST')")
+	@GetMapping("agregarPermisoDiario")
+	public ModelAndView agregarPermisoDiario(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_DIA);
+		mAV.addObject("lugares", lugarService.traerLugares());
+		mAV.addObject("diario", new PermisoDiarioModel());
+		return mAV;
+	}
+	
+	@PostMapping("insertarPermisoDiario")
+	public ModelAndView insertarPermisoDiario(@Valid @ModelAttribute("diario")PermisoDiarioModel permisoDiarioModel, BindingResult bindingResult) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_DIA);
+		if(personaRepository.traerPersonaEntityPorDni(permisoDiarioModel.getDni())==null) {
+			FieldError error = new FieldError("diario","dni","");
+			bindingResult.addError(error);
+		}
+		if(LocalDate.parse(permisoDiarioModel.getFechaInicial()).isBefore(LocalDate.now())) {
+			FieldError error = new FieldError("diario","fecha","");
+			bindingResult.addError(error);
+		}
+		
+		if(bindingResult.hasErrors()) {
+			mAV.addObject("lugares", lugarService.traerLugares());
+			mAV.addObject("periodo", permisoDiarioModel);
+		}
+		else {
+			permisoService.insertOrUpdate(permisoDiarioModel);
 			mAV.setViewName(ViewRouteHelper.USER_ROOT);
 		}
 		return mAV;
