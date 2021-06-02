@@ -68,7 +68,7 @@
 								</p>
 								<p>
 									Numero de documento: <input type="text" th:field="*{dni}" />
-									<div th:if="${#fields.hasErrors('dni')}"class="alert alert-danger">El numero de documento ingresado es incorrecto</div>
+									<div th:if="${#fields.hasErrors('dni')}"class="alert alert-danger">El numero de documento es incorrecto o ya existe</div>
 								</p>
 								<br> <input type="submit"class="btn-create" value="Crear"/> <br>
 

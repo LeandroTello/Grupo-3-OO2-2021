@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PersonaModel;
+import com.TPOO2.repositories.IPersonaRepository;
 import com.TPOO2.services.IPersonaService;
 
 @Controller
@@ -25,6 +27,10 @@ public class PersonaController {
 	@Autowired
 	@Qualifier("personaService")
 	private IPersonaService personaService;
+	
+	@Autowired
+	@Qualifier("personaRepository")
+	private IPersonaRepository personaRepository;
 	
 	@PreAuthorize("hasRole('ROLE_GUEST')")
 	@GetMapping("agregarPersona")
@@ -37,6 +43,12 @@ public class PersonaController {
 	@PostMapping("insertarPersona")
 	public ModelAndView insertarPersona(@Valid @ModelAttribute("persona") PersonaModel personaModel,BindingResult bindingResult) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSONA_AGREGAR);
+		
+		if(personaRepository.traerPersonaEntityPorDni(personaModel.getDni())!=null) {
+			FieldError error = new FieldError("periodo","dni","");
+			bindingResult.addError(error);
+		}
+		
 		if(bindingResult.hasErrors()) {
 			mAV.addObject("usuario",personaModel);
 		}
