@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PermisoDiarioModel;
+import com.TPOO2.models.PermisoModel;
 import com.TPOO2.models.PermisoPeriodoModel;
 import com.TPOO2.models.PersonaModel;
 import com.TPOO2.models.RodadoModel;
@@ -153,6 +154,29 @@ public class PermisoController {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERSONA_LISTA);
 		mAV.addObject("diario", permisoService.traerPermisosDiarosPorDNI(personaModel.getDni()));
 		mAV.addObject("periodo", permisoService.traerPermisosPeriodoPorDNI(personaModel.getDni()));
+		return mAV;
+	}
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
+	@GetMapping("permisoPorFecha")
+	public ModelAndView permisoPorFecha(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA);
+		mAV.addObject("permiso", new PermisoDiarioModel());
+		return mAV;
+	}
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
+	@PostMapping("listaDePermisosPorFecha")
+	public ModelAndView listaDePermisosPorFecha(Model model,@Valid @ModelAttribute("permiso")PermisoDiarioModel permisoDiarioModel) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA_LISTA);
+		mAV.addObject("diario", permisoService.traerPermisosDiarosPorFecha(LocalDate.parse(permisoDiarioModel.getFechaDesde()),LocalDate.parse(permisoDiarioModel.getFechaHasta())));
+		mAV.addObject("periodo", permisoService.traerPermisosPeriodoPorFecha(LocalDate.parse(permisoDiarioModel.getFechaDesde()),LocalDate.parse(permisoDiarioModel.getFechaHasta())));
+		return mAV;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
+	@GetMapping("permisoPorLugar")
+	public ModelAndView permisoPorLugar(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_LUGAR);
+		mAV.addObject("permiso", new PermisoDiarioModel());
 		return mAV;
 	}
 }

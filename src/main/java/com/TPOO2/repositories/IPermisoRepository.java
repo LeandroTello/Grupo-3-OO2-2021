@@ -1,6 +1,7 @@
 package com.TPOO2.repositories;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,5 +24,12 @@ public interface IPermisoRepository extends JpaRepository<PermisoEntity, Seriali
 	
 	@Query("SELECT p FROM PermisoPeriodoEntity p inner join fetch p.pedido pe where pe.dni=(:dni)")	
 	public abstract Set<PermisoPeriodoEntity> traerPermisosPeriodoPorDNI(@Param("dni")long dni);
+	
+	@Query("SELECT p FROM PermisoDiarioEntity p where p.fecha BETWEEN (:desde) AND (:hasta)")	
+	public abstract Set<PermisoDiarioEntity> traerPermisosDiarioPorFecha(@Param("desde")LocalDate desde,@Param("hasta")LocalDate hasta);
+	
+	@Query("SELECT p FROM PermisoPeriodoEntity p where p.fecha < (:hasta)")	
+	public abstract Set<PermisoPeriodoEntity> traerPermisosPeriodoPorFecha(@Param("hasta")LocalDate hasta);
+	
 	
 }

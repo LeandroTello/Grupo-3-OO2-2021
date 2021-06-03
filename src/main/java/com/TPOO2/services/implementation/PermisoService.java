@@ -151,5 +151,25 @@ public class PermisoService implements IPermisoService {
 		}
 		return models;
 	}
+	
+	public Set<PermisoDiarioModel> traerPermisosDiarosPorFecha(LocalDate desde,LocalDate hasta) {
+		Set<PermisoDiarioModel> models = new HashSet<PermisoDiarioModel>();
+		for (PermisoDiarioEntity permiso : permisoRepository.traerPermisosDiarioPorFecha(desde, hasta)) {			
+				models.add(permisoDiarioConverter.entityToModel(permiso));
+		}
+		return models;
+	}
+	
+	@Override
+	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFecha(LocalDate desde,LocalDate hasta) {
+		Set<PermisoPeriodoModel> models = new HashSet<PermisoPeriodoModel>();
+		for (PermisoPeriodoEntity permiso : permisoRepository.traerPermisosPeriodoPorFecha(hasta)) {
+			if (permiso.getFecha().plusDays(permiso.getCantDias()).isAfter(desde)
+					|| permiso.getFecha().plusDays(permiso.getCantDias()).isEqual(desde)) {
+				models.add(permisoPeriodoConverter.entityToModel(permiso));
+			}
+		}
+		return models;
+	}
 
 }

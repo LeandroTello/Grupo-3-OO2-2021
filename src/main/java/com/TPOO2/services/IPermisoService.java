@@ -1,5 +1,6 @@
 package com.TPOO2.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -19,5 +20,6 @@ public interface IPermisoService {
 	public Set<PermisoPeriodoModel> traerPermisosPorDominio(String dominio);
 	public Set<PermisoDiarioModel> traerPermisosDiarosPorDNI(long dni);
 	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorDNI(long dni);
-	
+	public Set<PermisoDiarioModel> traerPermisosDiarosPorFecha(LocalDate desde,LocalDate hasta);
+	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFecha(LocalDate desde,LocalDate hasta);
 }
