@@ -17,4 +17,7 @@ public interface IPermisoService {
 	public PermisoDiarioModel insertOrUpdate(PermisoDiarioModel permisoDiarioModel);
 	public boolean remove(int id);
 	public Set<PermisoPeriodoModel> traerPermisosPorDominio(String dominio);
+	public Set<PermisoDiarioModel> traerPermisosDiarosPorDNI(long dni);
+	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorDNI(long dni);
+	
 }

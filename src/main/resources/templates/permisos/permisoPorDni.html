@@ -54,13 +54,13 @@
 					<div class="card shadow-lg border-100 rounded-lg mt-5">
 						<div class="card-header">
 							<h3 class="text-center font-weight-light my-4">Ingrese el
-								dominio a buscar</h3>
+								DNI a buscar</h3>
 						</div>
 						<div class="card-body">
-							<form action="#" th:action="@{/permiso/listaDeRodado}" th:object="${rodado}" method="post">						
+							<form action="#" th:action="@{/permiso/listaDePersona}" th:object="${persona}" method="post">						
 								<br>
 								<p>
-									Dominio: <input type="text" th:field="*{dominio}" pattern="[A-Z]{3}[\d]{3}|[A-Z]{2}[\d]{3}[A-Z]{2}" title="ingrese un formato de patente valido" />
+									Numero de documento: <input type="text" th:field="*{dni}" />
 								</p>	
 								
 								<input type="submit"class="btn-create" value="Buscar"/> <br>

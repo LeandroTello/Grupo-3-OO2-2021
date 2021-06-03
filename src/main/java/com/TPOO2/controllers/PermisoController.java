@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PermisoDiarioModel;
 import com.TPOO2.models.PermisoPeriodoModel;
+import com.TPOO2.models.PersonaModel;
+import com.TPOO2.models.RodadoModel;
 import com.TPOO2.repositories.IPersonaRepository;
 import com.TPOO2.repositories.IRodadoRepository;
 import com.TPOO2.services.ILugarService;
@@ -121,6 +123,8 @@ public class PermisoController {
 			permisoService.insertOrUpdate(permisoDiarioModel);
 			mAV.setViewName(ViewRouteHelper.USER_ROOT);
 		}
+		return mAV;
+	}
 
 	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@GetMapping("permisoPorRodado")
@@ -134,6 +138,21 @@ public class PermisoController {
 	public ModelAndView traer(Model model,@Valid @ModelAttribute("rodado")RodadoModel rodadoModel) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_RODADO_LISTA);
 		mAV.addObject("permisos", permisoService.traerPermisosPorDominio(rodadoModel.getDominio()));
+		return mAV;
+	}
+	@PreAuthorize("hasAnyRole('ROLE_AUDIT','ROLE_GUEST')")
+	@GetMapping("permisoPorDNI")
+	public ModelAndView permisoPorDNI(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERSONA);
+		mAV.addObject("persona", new PersonaModel());
+		return mAV;
+	}
+	@PreAuthorize("hasAnyRole('ROLE_AUDIT','ROLE_GUEST')")
+	@PostMapping("listaDePersona")
+	public ModelAndView listaDePersona(Model model,@Valid @ModelAttribute("persona")PersonaModel personaModel) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERSONA_LISTA);
+		mAV.addObject("diario", permisoService.traerPermisosDiarosPorDNI(personaModel.getDni()));
+		mAV.addObject("periodo", permisoService.traerPermisosPeriodoPorDNI(personaModel.getDni()));
 		return mAV;
 	}
 }
