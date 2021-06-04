@@ -22,4 +22,6 @@ public interface IPermisoService {
 	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorDNI(long dni);
 	public Set<PermisoDiarioModel> traerPermisosDiarosPorFecha(LocalDate desde,LocalDate hasta);
 	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFecha(LocalDate desde,LocalDate hasta);
+	public Set<PermisoDiarioModel> traerPermisosDiarosPorFechaYLugar(LocalDate desde,LocalDate hasta,int salidaLlegada,int idLocalidad);
+	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFechaYLugar(LocalDate desde,LocalDate hasta,int salidaLlegada,int idLocalidad);
 }

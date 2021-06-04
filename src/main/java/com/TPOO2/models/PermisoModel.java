@@ -11,6 +11,7 @@ public abstract class PermisoModel {
 	protected LocalDate fecha;
 	protected String fechaDesde;
 	protected String fechaHasta;
+	protected int salidaLlegada;
 	protected Set<LugarModel> desdeHasta = new HashSet<LugarModel>();
 	
 	public PermisoModel(int idPermiso, PersonaModel pedido, LocalDate fecha, Set<LugarModel> desdeHasta) {
@@ -70,6 +71,15 @@ public abstract class PermisoModel {
 
 	public void setFechaHasta(String fechaHasta) {
 		this.fechaHasta = fechaHasta;
+	}
+	
+
+	public int getSalidaLlegada() {
+		return salidaLlegada;
+	}
+
+	public void setSalidaLlegada(int salidaLlegada) {
+		this.salidaLlegada = salidaLlegada;
 	}
 
 	@Override

@@ -19,6 +19,7 @@ import com.TPOO2.converters.RodadoConverter;
 import com.TPOO2.entities.PermisoDiarioEntity;
 import com.TPOO2.entities.PermisoEntity;
 import com.TPOO2.entities.PermisoPeriodoEntity;
+import com.TPOO2.models.LugarModel;
 import com.TPOO2.models.PermisoDiarioModel;
 import com.TPOO2.models.PermisoModel;
 import com.TPOO2.models.PermisoPeriodoModel;
@@ -151,17 +152,17 @@ public class PermisoService implements IPermisoService {
 		}
 		return models;
 	}
-	
-	public Set<PermisoDiarioModel> traerPermisosDiarosPorFecha(LocalDate desde,LocalDate hasta) {
+
+	public Set<PermisoDiarioModel> traerPermisosDiarosPorFecha(LocalDate desde, LocalDate hasta) {
 		Set<PermisoDiarioModel> models = new HashSet<PermisoDiarioModel>();
-		for (PermisoDiarioEntity permiso : permisoRepository.traerPermisosDiarioPorFecha(desde, hasta)) {			
-				models.add(permisoDiarioConverter.entityToModel(permiso));
+		for (PermisoDiarioEntity permiso : permisoRepository.traerPermisosDiarioPorFecha(desde, hasta)) {
+			models.add(permisoDiarioConverter.entityToModel(permiso));
 		}
 		return models;
 	}
-	
+
 	@Override
-	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFecha(LocalDate desde,LocalDate hasta) {
+	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFecha(LocalDate desde, LocalDate hasta) {
 		Set<PermisoPeriodoModel> models = new HashSet<PermisoPeriodoModel>();
 		for (PermisoPeriodoEntity permiso : permisoRepository.traerPermisosPeriodoPorFecha(hasta)) {
 			if (permiso.getFecha().plusDays(permiso.getCantDias()).isAfter(desde)
@@ -170,6 +171,31 @@ public class PermisoService implements IPermisoService {
 			}
 		}
 		return models;
+	}
+
+	public Set<PermisoDiarioModel> traerPermisosDiarosPorFechaYLugar(LocalDate desde, LocalDate hasta, int idLocalidad,int salidaLlegada) {
+		Set<PermisoDiarioModel> permisos = new HashSet<PermisoDiarioModel>();
+		LugarModel lugar = lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(idLocalidad));
+		for ( PermisoDiarioModel permiso : this.traerPermisosDiarosPorFecha(desde, hasta)) {
+			List<LugarModel> aux = new ArrayList<LugarModel>(permiso.getDesdeHasta());
+			if (aux.get(salidaLlegada).equals(lugar)) {
+				permisos.add(permiso);
+			}
+		}
+		return permisos;
+	}
+
+	@Override
+	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFechaYLugar(LocalDate desde, LocalDate hasta, int idLocalidad,int salidaLlegada) {
+		Set<PermisoPeriodoModel> permisos = new HashSet<>();
+		LugarModel lugar = lugarConverter.entityToModel(lugarRepository.traerLugarEntityPorId(idLocalidad));
+		for (PermisoPeriodoModel permiso : this.traerPermisosPeriodoPorFecha(desde, hasta)) {
+			List<LugarModel> aux = new ArrayList<LugarModel>(permiso.getDesdeHasta());
+			if (aux.get(salidaLlegada).equals(lugar)) {
+				permisos.add(permiso);
+			}
+		}
+		return permisos;
 	}
 
 }

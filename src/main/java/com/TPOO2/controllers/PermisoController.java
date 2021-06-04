@@ -134,7 +134,6 @@ public class PermisoController {
 		mAV.addObject("rodado", new RodadoModel());
 		return mAV;
 	}
-	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@PostMapping("listaDeRodado")
 	public ModelAndView traer(Model model,@Valid @ModelAttribute("rodado")RodadoModel rodadoModel) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_RODADO_LISTA);
@@ -148,7 +147,6 @@ public class PermisoController {
 		mAV.addObject("persona", new PersonaModel());
 		return mAV;
 	}
-	@PreAuthorize("hasAnyRole('ROLE_AUDIT','ROLE_GUEST')")
 	@PostMapping("listaDePersona")
 	public ModelAndView listaDePersona(Model model,@Valid @ModelAttribute("persona")PersonaModel personaModel) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERSONA_LISTA);
@@ -163,7 +161,6 @@ public class PermisoController {
 		mAV.addObject("permiso", new PermisoDiarioModel());
 		return mAV;
 	}
-	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@PostMapping("listaDePermisosPorFecha")
 	public ModelAndView listaDePermisosPorFecha(Model model,@Valid @ModelAttribute("permiso")PermisoDiarioModel permisoDiarioModel) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA_LISTA);
@@ -176,7 +173,16 @@ public class PermisoController {
 	@GetMapping("permisoPorLugar")
 	public ModelAndView permisoPorLugar(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_LUGAR);
+		mAV.addObject("lugares", lugarService.traerLugares());
 		mAV.addObject("permiso", new PermisoDiarioModel());
 		return mAV;
 	}
+	@PostMapping("listaDePermisosPorFechaYLugar")
+	public ModelAndView listaDePermisosPorFechaYLugar(Model model,@Valid @ModelAttribute("permiso")PermisoDiarioModel permisoDiarioModel) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA_LISTA);
+		mAV.addObject("diario", permisoService.traerPermisosDiarosPorFechaYLugar(LocalDate.parse(permisoDiarioModel.getFechaDesde()),LocalDate.parse(permisoDiarioModel.getFechaHasta()),permisoDiarioModel.getIdHasta(),permisoDiarioModel.getSalidaLlegada()));
+		mAV.addObject("periodo", permisoService.traerPermisosPeriodoPorFechaYLugar(LocalDate.parse(permisoDiarioModel.getFechaDesde()),LocalDate.parse(permisoDiarioModel.getFechaHasta()),permisoDiarioModel.getIdHasta(),permisoDiarioModel.getSalidaLlegada()));
+		return mAV;
+	}
+	
 }
