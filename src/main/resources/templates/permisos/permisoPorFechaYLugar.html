@@ -61,10 +61,12 @@
 								<p>
 									Fecha desde: <input type="date" th:field="*{fechaDesde}"/>
 								</p>
+								<div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger">La fecha no es valida</div>
+								
 								<p>
 									Fecha hasta: <input type="date" th:field="*{fechaHasta}"/>
 								</p>							
-								    Seleccione El lugar
+								    Seleccione el lugar
 								<p>
 									<select  th:field="*{idHasta}">
 											<option th:each="lug : ${lugares}" 
@@ -75,11 +77,11 @@
 								<p>
 									<select  th:field="*{salidaLlegada}">
 											<option value="0">Sale</option>			
-											<option value="1">LLega</option>							
+											<option value="1">Llega</option>							
 									</select>
 								</p>
 								<br>				
-							<div><input type="submit"class="btn-create" value="Crear"/>								
+							<div><input type="submit"class="btn-create" value="Mostrar"/>								
 								</div>
 							</form>
 						</div>

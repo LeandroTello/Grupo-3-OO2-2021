@@ -61,6 +61,8 @@
 								<p>
 									Fecha desde: <input type="date" th:field="*{fechaDesde}"/>
 								</p>
+								<div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger">La fecha no es valida</div>
+								
 								<p>
 									Fecha hasta: <input type="date" th:field="*{fechaHasta}"/>
 								</p>
