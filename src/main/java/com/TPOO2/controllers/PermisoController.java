@@ -85,6 +85,10 @@ public class PermisoController {
 			FieldError error = new FieldError("periodo", "fecha", "");
 			bindingResult.addError(error);
 		}
+		if (permisoPeriodoModel.getIdDesde()==permisoPeriodoModel.getIdHasta()) {
+			FieldError error = new FieldError("periodo", "idDesde", "");
+			bindingResult.addError(error);
+		}
 
 		if (bindingResult.hasErrors()) {
 			mAV.addObject("lugares", lugarService.traerLugares());
@@ -117,6 +121,10 @@ public class PermisoController {
 
 		if (LocalDate.parse(permisoDiarioModel.getFechaInicial()).isBefore(LocalDate.now())) {
 			FieldError error = new FieldError("diario", "fecha", "");
+			bindingResult.addError(error);
+		}
+		if (permisoDiarioModel.getIdDesde()==permisoDiarioModel.getIdHasta()) {
+			FieldError error = new FieldError("periodo", "idDesde", "");
 			bindingResult.addError(error);
 		}
 

@@ -73,6 +73,7 @@
 												th:value="${lug.idLugar}" th:text="${lug.lugar}"></option>										
 									</select>
 								</p>
+								<div th:if="${#fields.hasErrors('idDesde')}" class="alert alert-danger">El lugar de salida no puede ser el lugar de llegada</div>
 								Seleccione su lugar de llegada
 								<p>
 									<select  th:field="*{idHasta}">
