@@ -62,9 +62,10 @@
 								<p>
 									Numero de documento: <input type="text" th:field="*{dni}" />
 								</p>	
+								<div th:if="${#fields.hasErrors('dni')}" class="alert alert-danger">La persona no se encuentra cargada en el sistema</div>
 								
-								<input type="submit"class="btn-create" value="Buscar"/> <br>
-
+							<div><input type="submit"class="btn-create" value="Buscar"/>								
+								</div>
 							</form>
 					</div>
 

@@ -3,9 +3,13 @@ package com.TPOO2.models;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.validation.constraints.Size;
+
 public class PermisoDiarioModel extends PermisoModel {
 
+	@Size(min=5)
 	private String motivo;
+	
 	private int idDesde;
 	private int idHasta;
 	private long dni;

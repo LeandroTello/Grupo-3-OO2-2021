@@ -84,6 +84,7 @@ public class PermisoController {
 			FieldError error = new FieldError("periodo","fecha","");
 			bindingResult.addError(error);
 		}
+		
 		if(bindingResult.hasErrors()) {
 			mAV.addObject("lugares", lugarService.traerLugares());
 			mAV.addObject("periodo", permisoPeriodoModel);
@@ -107,10 +108,12 @@ public class PermisoController {
 	@PostMapping("insertarPermisoDiario")
 	public ModelAndView insertarPermisoDiario(@Valid @ModelAttribute("diario")PermisoDiarioModel permisoDiarioModel, BindingResult bindingResult) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_DIA);
+		
 		if(personaRepository.traerPersonaEntityPorDni(permisoDiarioModel.getDni())==null) {
 			FieldError error = new FieldError("diario","dni","");
 			bindingResult.addError(error);
 		}
+		
 		if(LocalDate.parse(permisoDiarioModel.getFechaInicial()).isBefore(LocalDate.now())) {
 			FieldError error = new FieldError("diario","fecha","");
 			bindingResult.addError(error);
@@ -120,6 +123,7 @@ public class PermisoController {
 			mAV.addObject("lugares", lugarService.traerLugares());
 			mAV.addObject("periodo", permisoDiarioModel);
 		}
+		
 		else {
 			permisoService.insertOrUpdate(permisoDiarioModel);
 			mAV.setViewName(ViewRouteHelper.USER_ROOT);
@@ -134,12 +138,25 @@ public class PermisoController {
 		mAV.addObject("rodado", new RodadoModel());
 		return mAV;
 	}
+	
 	@PostMapping("listaDeRodado")
-	public ModelAndView traer(Model model,@Valid @ModelAttribute("rodado")RodadoModel rodadoModel) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_RODADO_LISTA);
-		mAV.addObject("permisos", permisoService.traerPermisosPorDominio(rodadoModel.getDominio()));
+	public ModelAndView traer(@Valid @ModelAttribute("rodado") RodadoModel rodadoModel, BindingResult bindingResult) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_RODADO);
+		if(rodadoRepository.traerRodadoEntityPorDominio(rodadoModel.getDominio())==null) {
+			FieldError error = new FieldError("rodado","dominio","");
+			bindingResult.addError(error);
+		}
+		if(bindingResult.hasErrors()) {
+			mAV.addObject("rodado", rodadoModel);
+		} 
+		else {
+			mAV.setViewName(ViewRouteHelper.PERMISO_RODADO_LISTA);
+			mAV.addObject("permisos", permisoService.traerPermisosPorDominio(rodadoModel.getDominio()));
+		}
+		
 		return mAV;
 	}
+	
 	@PreAuthorize("hasAnyRole('ROLE_AUDIT','ROLE_GUEST')")
 	@GetMapping("permisoPorDNI")
 	public ModelAndView permisoPorDNI(Model model) {
@@ -147,13 +164,25 @@ public class PermisoController {
 		mAV.addObject("persona", new PersonaModel());
 		return mAV;
 	}
+	
 	@PostMapping("listaDePersona")
-	public ModelAndView listaDePersona(Model model,@Valid @ModelAttribute("persona")PersonaModel personaModel) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERSONA_LISTA);
+	public ModelAndView listaDePersona(@Valid @ModelAttribute("persona")PersonaModel personaModel, BindingResult bindingResult) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERSONA);
+		if(personaRepository.traerPersonaEntityPorDni(personaModel.getDni())==null) {
+			FieldError error = new FieldError("persona","dni","");
+			bindingResult.addError(error);
+		}
+		if(bindingResult.hasErrors()) {
+			mAV.addObject("persona", personaModel);
+		}
+		else {
+		mAV.setViewName(ViewRouteHelper.PERMISO_PERSONA_LISTA);
 		mAV.addObject("diario", permisoService.traerPermisosDiarosPorDNI(personaModel.getDni()));
 		mAV.addObject("periodo", permisoService.traerPermisosPeriodoPorDNI(personaModel.getDni()));
+		}
 		return mAV;
 	}
+	
 	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@GetMapping("permisoPorFecha")
 	public ModelAndView permisoPorFecha(Model model) {
@@ -163,7 +192,8 @@ public class PermisoController {
 	}
 	@PostMapping("listaDePermisosPorFecha")
 	public ModelAndView listaDePermisosPorFecha(Model model,@Valid @ModelAttribute("permiso")PermisoDiarioModel permisoDiarioModel) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA_LISTA);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA);
+		mAV.setViewName(ViewRouteHelper.PERMISO_FECHA_LISTA); 
 		mAV.addObject("diario", permisoService.traerPermisosDiarosPorFecha(LocalDate.parse(permisoDiarioModel.getFechaDesde()),LocalDate.parse(permisoDiarioModel.getFechaHasta())));
 		mAV.addObject("periodo", permisoService.traerPermisosPeriodoPorFecha(LocalDate.parse(permisoDiarioModel.getFechaDesde()),LocalDate.parse(permisoDiarioModel.getFechaHasta())));
 		return mAV;
@@ -171,12 +201,13 @@ public class PermisoController {
 	
 	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@GetMapping("permisoPorLugar")
-	public ModelAndView permisoPorLugar(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_LUGAR);
+	public ModelAndView permisoPorFechaYLugar(Model model) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA_LUGAR);
 		mAV.addObject("lugares", lugarService.traerLugares());
 		mAV.addObject("permiso", new PermisoDiarioModel());
 		return mAV;
 	}
+	
 	@PostMapping("listaDePermisosPorFechaYLugar")
 	public ModelAndView listaDePermisosPorFechaYLugar(Model model,@Valid @ModelAttribute("permiso")PermisoDiarioModel permisoDiarioModel) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA_LISTA);

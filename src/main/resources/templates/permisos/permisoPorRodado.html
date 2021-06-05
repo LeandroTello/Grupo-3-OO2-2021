@@ -61,7 +61,9 @@
 								<br>
 								<p>
 									Dominio: <input type="text" th:field="*{dominio}" pattern="[A-Z]{3}[\d]{3}|[A-Z]{2}[\d]{3}[A-Z]{2}" title="ingrese un formato de patente valido" />
-								</p>	
+								</p>
+								<div th:if="${#fields.hasErrors('dominio')}" class="alert alert-danger">El rodado no se encuentra en el sistema</div>
+									
 								
 								<input type="submit"class="btn-create" value="Buscar"/> <br>
 
