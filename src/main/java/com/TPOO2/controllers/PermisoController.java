@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TPOO2.funciones.Funciones;
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PermisoDiarioModel;
 import com.TPOO2.models.PermisoModel;
@@ -71,7 +72,7 @@ public class PermisoController {
 	@PostMapping("insertarPermisoPeriodo")
 	public ModelAndView insertarPermisoPeriodo(
 			@Valid @ModelAttribute("periodo") PermisoPeriodoModel permisoPeriodoModel, Model model,
-			BindingResult bindingResult) {
+			BindingResult bindingResult) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_PERIODO);
 		if (personaRepository.traerPersonaEntityPorDni(permisoPeriodoModel.getDni()) == null) {
 			FieldError error = new FieldError("periodo", "dni", "");
@@ -94,8 +95,9 @@ public class PermisoController {
 			mAV.addObject("lugares", lugarService.traerLugares());
 			mAV.addObject("periodo", permisoPeriodoModel);
 		} else {
-			permisoService.insertOrUpdate(permisoPeriodoModel);
-			mAV.setViewName(ViewRouteHelper.USER_ROOT);
+			permisoService.insertOrUpdate(permisoPeriodoModel);			
+			Funciones.generarQR(Funciones.generarUrlPeriodo(permisoPeriodoModel),400,400,ViewRouteHelper.CODIGO_QR_UBICACION);
+			mAV.setViewName(ViewRouteHelper.CODIGO_QR_MOSTRAR);
 		}
 		return mAV;
 	}
@@ -111,7 +113,7 @@ public class PermisoController {
 
 	@PostMapping("insertarPermisoDiario")
 	public ModelAndView insertarPermisoDiario(@Valid @ModelAttribute("diario") PermisoDiarioModel permisoDiarioModel,
-			BindingResult bindingResult) {
+			BindingResult bindingResult) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_DIA);
 
 		if (personaRepository.traerPersonaEntityPorDni(permisoDiarioModel.getDni()) == null) {
@@ -133,9 +135,10 @@ public class PermisoController {
 			mAV.addObject("periodo", permisoDiarioModel);
 		}
 
-		else {
+		else {			
 			permisoService.insertOrUpdate(permisoDiarioModel);
-			mAV.setViewName(ViewRouteHelper.USER_ROOT);
+			Funciones.generarQR(Funciones.generarUrlPero(permisoDiarioModel),400,400,ViewRouteHelper.CODIGO_QR_UBICACION);
+			mAV.setViewName(ViewRouteHelper.CODIGO_QR_MOSTRAR);
 		}
 		return mAV;
 	}
