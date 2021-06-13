@@ -1,8 +1,6 @@
 package com.TPOO2.funciones;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -10,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

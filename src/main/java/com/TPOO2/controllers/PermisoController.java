@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.TPOO2.funciones.Funciones;
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.PermisoDiarioModel;
-import com.TPOO2.models.PermisoModel;
 import com.TPOO2.models.PermisoPeriodoModel;
 import com.TPOO2.models.PersonaModel;
 import com.TPOO2.models.RodadoModel;

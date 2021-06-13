@@ -17,10 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.TPOO2.helpers.ViewRouteHelper;
 import com.TPOO2.models.RodadoModel;
-import com.TPOO2.models.UsuarioModel;
 import com.TPOO2.repositories.IRodadoRepository;
 import com.TPOO2.services.IRodadoService;
-import com.TPOO2.services.IUsuarioService;
 
 @Controller
 @RequestMapping("rodado")
