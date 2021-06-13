@@ -2,6 +2,7 @@ package com.TPOO2.controllers;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
 
@@ -265,8 +266,9 @@ public class PermisoController {
 	}
 
 	@GetMapping("generarQR/{idPermiso}")
-    public ModelAndView generarQR(@PathVariable int idPermiso,Model model) throws WriterException, IOException {
+    public ModelAndView generarQR(@PathVariable int idPermiso,Model model) throws WriterException, IOException, InterruptedException {
 		Funciones.generarQR( ViewRouteHelper.QR_URL+permisoService.crearQrPorId(idPermiso).replaceAll("\\s+","%20"),400,400,ViewRouteHelper.CODIGO_QR_RUTA);
+		TimeUnit.SECONDS.sleep(5);
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.CODIGO_QR_MOSTRAR);
         return mAV;
     }
