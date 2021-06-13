@@ -56,7 +56,7 @@ public class Funciones {
 	}
 	
 
-	public static String generarUrlPero(PermisoDiarioModel permisoDiarioModel) {
+	public static String generarUrlDiario(PermisoDiarioModel permisoDiarioModel) {
 		List<LugarModel> desdeHasta = new ArrayList<LugarModel>(permisoDiarioModel.getDesdeHasta());
 		return "nombre=" + permisoDiarioModel.getPedido().getNombre() + "&apellido="
 				+ permisoDiarioModel.getPedido().getApellido() + "&dni=" + permisoDiarioModel.getPedido().getDni()

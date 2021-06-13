@@ -24,4 +24,5 @@ public interface IPermisoService {
 	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFecha(LocalDate desde,LocalDate hasta);
 	public Set<PermisoDiarioModel> traerPermisosDiarosPorFechaYLugar(LocalDate desde,LocalDate hasta,int salidaLlegada,int idLocalidad);
 	public Set<PermisoPeriodoModel> traerPermisosPeriodoPorFechaYLugar(LocalDate desde,LocalDate hasta,int salidaLlegada,int idLocalidad);
+	public String crearQrPorId(int idPermiso);
 }

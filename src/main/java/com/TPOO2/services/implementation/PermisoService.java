@@ -19,6 +19,7 @@ import com.TPOO2.converters.RodadoConverter;
 import com.TPOO2.entities.PermisoDiarioEntity;
 import com.TPOO2.entities.PermisoEntity;
 import com.TPOO2.entities.PermisoPeriodoEntity;
+import com.TPOO2.funciones.Funciones;
 import com.TPOO2.models.LugarModel;
 import com.TPOO2.models.PermisoDiarioModel;
 import com.TPOO2.models.PermisoModel;
@@ -196,6 +197,20 @@ public class PermisoService implements IPermisoService {
 			}
 		}
 		return permisos;
+	}
+	
+	public String crearQrPorId(int idPermiso) {
+		String linkQR;
+		PermisoEntity permiso = permisoRepository.traerPermisoPorId(idPermiso);
+		if(permiso instanceof PermisoPeriodoEntity) {
+			PermisoPeriodoModel permisoModel = permisoPeriodoConverter.entityToModel(permisoRepository.traerPermisoPeriodoPorId(idPermiso));
+			linkQR = Funciones.generarUrlPeriodo(permisoModel);
+		}
+		else {
+			PermisoDiarioModel permisoModel = permisoDiarioConverter.entityToModel(permisoRepository.traerPermisoDiarioPorId(idPermiso));
+			linkQR = Funciones.generarUrlDiario(permisoModel);
+		}
+		return linkQR;
 	}
 
 }
