@@ -46,9 +46,9 @@ public class PerfilController {
 	}
 	
 	@PostMapping("insertPerfil")
-	public RedirectView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
+	public ModelAndView insertarPerfil(@ModelAttribute("perfil") PerfilModel perfilModel) {
 		perfilService.insertOrUpdate(perfilModel);
-		return new RedirectView(ViewRouteHelper.PERFIL_CARGAR);
+		return new ModelAndView(ViewRouteHelper.CREADO);
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')")
@@ -69,10 +69,10 @@ public class PerfilController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarPerfil/{idPerfil}")
-    public RedirectView eliminar(@PathVariable int idPerfil,Model model) {
+    public ModelAndView eliminar(@PathVariable int idPerfil,Model model) {
         PerfilModel perfil = perfilService.traerPerfilModelPorId(idPerfil);
         perfilService.deletePerfil(perfil);
-        return new RedirectView(ViewRouteHelper.PERFIL_MOSTRAR);
+        return new ModelAndView(ViewRouteHelper.ELIMINADO);
     }
 	
 	@GetMapping("pdfPerfil")

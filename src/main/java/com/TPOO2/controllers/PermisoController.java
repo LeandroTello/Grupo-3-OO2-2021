@@ -98,7 +98,7 @@ public class PermisoController {
 			mAV.addObject("periodo", permisoPeriodoModel);
 		} else {
 			permisoService.insertOrUpdate(permisoPeriodoModel);			
-			mAV.setViewName(ViewRouteHelper.HOME_INDEX);
+			mAV.setViewName(ViewRouteHelper.CREADO);
 		}
 		return mAV;
 	}
@@ -138,7 +138,7 @@ public class PermisoController {
 
 		else {			
 			permisoService.insertOrUpdate(permisoDiarioModel);
-			mAV.setViewName(ViewRouteHelper.HOME_INDEX);
+			mAV.setViewName(ViewRouteHelper.CREADO);
 		}
 		return mAV;
 	}

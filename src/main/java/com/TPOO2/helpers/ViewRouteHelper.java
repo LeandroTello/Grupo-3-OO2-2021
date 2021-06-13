@@ -29,7 +29,8 @@ public class ViewRouteHelper {
 	// HOME
 	
 	public final static String HOME_INDEX = "home/index";
-	
+	public final static String CREADO = "home/creadoCorrectamente";
+	public final static String ELIMINADO = "home/eliminadoCorrectamente";
 
 	// REDIRECT
 	

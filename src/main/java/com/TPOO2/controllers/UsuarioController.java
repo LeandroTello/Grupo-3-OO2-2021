@@ -62,7 +62,7 @@ public class UsuarioController {
 		}
 		else {
 		usuarioService.insertOrUpdate(usuarioModel);
-		mAV.setViewName(ViewRouteHelper.USER_ROOT);
+		mAV.setViewName(ViewRouteHelper.CREADO);
 		}
 		return mAV;
 	}
@@ -101,11 +101,11 @@ public class UsuarioController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("eliminarUsuario/{idUsuario}")
-    public RedirectView eliminar(@PathVariable int idUsuario,Model model) {
+    public ModelAndView eliminar(@PathVariable int idUsuario,Model model) {
 		UsuarioModel usuario = usuarioService.traerUsuarioModelPorId(idUsuario);
 		usuario.setIdPerfil(usuario.getPerfil().getIdPerfil());
 		usuarioService.deleteUsuario(usuario);
-        return new RedirectView(ViewRouteHelper.USUARIO_MOSTRAR);
+        return new ModelAndView(ViewRouteHelper.ELIMINADO);
     }
 	
 	@GetMapping("pdf")

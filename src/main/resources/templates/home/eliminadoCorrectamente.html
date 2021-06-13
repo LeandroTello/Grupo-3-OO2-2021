@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>UNLa</title>
+<!-- Bootstrap core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="/css/modern-business.css" rel="stylesheet" />
+<style>
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background: #343a40;
+}
+</style>
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Inicio</a>
+			<button aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation"
+				class="navbar-toggler navbar-toggler-right"
+				data-target="#navbarResponsive" data-toggle="collapse" type="button"></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<div sec:authorize="hasRole('ROLE_GUEST')">
+						<li class="nav-item dropdown"><a aria-expanded="false"
+							aria-haspopup="true" class="nav-link dropdown-toggle"
+							data-toggle="dropdown" href="#" id="navbarDropdownBlog">Rodado</a>
+							<div aria-labelledby="navbarDropdownBlog"
+								class="dropdown-menu dropdown-menu-right">
+								<div sec:authorize="hasRole('ROLE_GUEST')">
+									<a class="dropdown-item" href="/rodado/ingresarRodado">Ingresar
+										rodado</a>
+								</div>
+							</div></li>
+					</div>
+					<div sec:authorize="hasRole('ROLE_GUEST')">
+						<li class="nav-item dropdown"><a aria-expanded="false"
+							aria-haspopup="true" class="nav-link dropdown-toggle"
+							data-toggle="dropdown" href="#" id="navbarDropdownBlog">Permiso</a>
+							<div aria-labelledby="navbarDropdownBlog"
+								class="dropdown-menu dropdown-menu-right">
+								<div sec:authorize="hasRole('ROLE_GUEST')">
+									<a class="dropdown-item" href="/permiso/agregarPermisoPeriodo">Solicitar
+										permiso para un periodo determinado</a> <a class="dropdown-item"
+										href="/permiso/agregarPermisoDiario">Solicitar permiso
+										para transitar un solo dia</a>
+								</div>
+							</div></li>
+					</div>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
+								<li class="nav-item dropdown"><a aria-expanded="false"
+									aria-haspopup="true" class="nav-link dropdown-toggle"
+									data-toggle="dropdown" href="#" id="navbarDropdownBlog">Perfiles</a>
+									<div aria-labelledby="navbarDropdownBlog"
+										class="dropdown-menu dropdown-menu-right">
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
+											<a class="dropdown-item" href="/home/agregarPerfil">Alta
+												de perfil</a>
+										</div>
+										<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
+											<a class="dropdown-item" href="/home/mostrarPerfiles">Lista
+												de perfiles</a>
+										</div>
+									</div></li>
+							</div>
+							<div sec:authorize="hasAnyRole('ROLE_AUDIT','ROLE_GUEST')">
+								<li class="nav-item dropdown"><a aria-expanded="false"
+									aria-haspopup="true" class="nav-link dropdown-toggle"
+									data-toggle="dropdown" href="#" id="navbarDropdownBlog">Buscar</a>
+									<div aria-labelledby="navbarDropdownBlog"
+										class="dropdown-menu dropdown-menu-right">
+										<div sec:authorize="hasRole('ROLE_AUDIT')">
+											<a class="dropdown-item" href="/permiso/permisoPorRodado">Permiso
+												por rodado</a>
+										</div>
+										<div sec:authorize="hasAnyRole('ROLE_GUEST','ROLE_AUDIT')">
+											<a class="dropdown-item" href="/permiso/permisoPorDNI">Permiso
+												por DNI</a>
+										</div>
+										<div sec:authorize="hasRole('ROLE_AUDIT')">
+											<a class="dropdown-item" href="/permiso/permisoPorFecha">Permisos
+												activos por fecha</a>
+										</div>
+										<div sec:authorize="hasRole('ROLE_AUDIT')">
+											<a class="dropdown-item" href="/permiso/permisoPorLugar">Permisos
+												activos por fecha y lugar</a>
+										</div>
+									</div></li>
+							</div>
+							<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_AUDIT')">
+								<li class="nav-item dropdown"><a aria-expanded="false"
+									aria-haspopup="true" class="nav-link dropdown-toggle"
+									data-toggle="dropdown" href="#" id="navbarDropdownBlog">Usuario</a>
+									<div aria-labelledby="navbarDropdownBlog"
+										class="dropdown-menu dropdown-menu-right">
+										<div sec:authorize="hasRole('ROLE_ADMIN')">
+											<a class="dropdown-item" href="/home/agregarUsuario">Alta
+												de usuario</a>
+										</div>
+										<a class="dropdown-item" href="/home/mostrarUsuarios">Lista
+											de usuarios</a>
+									</div></li>
+							</div>
+							<div sec:authorize="hasRole('ROLE_GUEST')">
+								<li class="nav-item dropdown"><a aria-expanded="false"
+									aria-haspopup="true" class="nav-link dropdown-toggle"
+									data-toggle="dropdown" href="#" id="navbarDropdownBlog">Persona</a>
+									<div aria-labelledby="navbarDropdownBlog"
+										class="dropdown-menu dropdown-menu-right">
+										<div sec:authorize="hasRole('ROLE_GUEST')">
+											<a class="dropdown-item" href="/home/agregarPersona">Alta
+												de persona</a></li>
+							</div>
+					</div>
+					<!-- Desplegable -->
+					<li class="nav-item dropdown"><a aria-expanded="false"
+						aria-haspopup="true" class="nav-link dropdown-toggle"
+						data-toggle="dropdown" href="#" id="navbarDropdownBlog">Sesion</a>
+						<div aria-labelledby="navbarDropdownBlog"
+							class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor: pointer"
+									type="submit" value="Salir" />
+							</form>
+							<!-- <a class="dropdown-item" href="example.html">Example</a><a class="dropdown-item" href="example2.html">Example 2</a> -->
+
+						</div></li>
+
+				</ul>
+			</div>
+		</div>
+		<br>		
+	</nav>
+	<div class="container">
+		<h1 class="display-10 alert alert-info">Eliminado con exito</h1>
+	</div>
+	<br>
+	<br>
+	<div class="container text-center">
+						<a th:href="@{/}" class="btn btn-create">Volver al menu
+							principal</a>
+	</div>
+	<!-- Footer -->
+	<div id="footer">
+		<div class="m-0 text-center text-white">
+			<br>Copyright &copy;Grupo 3 Objetos 2 2021
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

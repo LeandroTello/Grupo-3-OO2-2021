@@ -51,7 +51,7 @@ public class RodadoController {
 		}
 		else {
 		rodadoService.insertOrUpdate(rodadoModel);
-		mAV.setViewName(ViewRouteHelper.USER_ROOT);
+		mAV.setViewName(ViewRouteHelper.CREADO);
 		}
 		return mAV;
 	}

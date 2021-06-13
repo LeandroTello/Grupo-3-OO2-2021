@@ -54,7 +54,7 @@ public class PersonaController {
 		}
 		else {
 		personaService.insertOrUpdate(personaModel);
-		mAV.setViewName(ViewRouteHelper.USER_ROOT);
+		mAV.setViewName(ViewRouteHelper.CREADO);
 		}
 		return mAV;
 	}
