@@ -31,5 +31,12 @@ public interface IPermisoRepository extends JpaRepository<PermisoEntity, Seriali
 	@Query("SELECT p FROM PermisoPeriodoEntity p where p.fecha < (:hasta)")	
 	public abstract Set<PermisoPeriodoEntity> traerPermisosPeriodoPorFecha(@Param("hasta")LocalDate hasta);
 	
-	
+	@Query("SELECT p FROM PermisoEntity p where p.idPermiso = (:idPermiso)")
+    public abstract PermisoEntity traerPermisoPorId(@Param("idPermiso")int idPermiso);
+
+    @Query("SELECT p FROM PermisoPeriodoEntity p where p.idPermiso = (:idPermiso)")
+    public abstract PermisoPeriodoEntity traerPermisoPeriodoPorId(@Param("idPermiso")int idPermiso);
+
+    @Query("SELECT p FROM PermisoDiarioEntity p where p.idPermiso = (:idPermiso)")
+    public abstract PermisoDiarioEntity traerPermisoDiarioPorId(@Param("idPermiso")int idPermiso);
 }
