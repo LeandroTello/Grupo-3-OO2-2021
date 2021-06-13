@@ -44,7 +44,7 @@ public class Funciones {
 
 	public static String generarUrlPeriodo(PermisoPeriodoModel permisoPeriodoModel){
         LocalDate fin= permisoPeriodoModel.getFecha();
-        fin.plusDays(permisoPeriodoModel.getCantDias());
+        fin= fin.plusDays(permisoPeriodoModel.getCantDias());
         String fechaFin=fin.getDayOfMonth()+"-"+fin.getMonthValue()+"-"+fin.getYear();
         List<LugarModel> desdeHasta = new ArrayList<LugarModel>(permisoPeriodoModel.getDesdeHasta());
         return "nombre="+permisoPeriodoModel.getPedido().getNombre()+"&apellido="+permisoPeriodoModel.getPedido().getApellido()+"&dni="+permisoPeriodoModel.getPedido().getDni()+
