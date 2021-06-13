@@ -36,8 +36,9 @@ public class ViewRouteHelper {
 	public final static String INICIO = "/";
 	
 	// QR
-	public static final String CODIGO_QR_UBICACION = "./src/main/resources/static/qr/QRCode.png";
+	public static final String CODIGO_QR_RUTA = "./src/main/resources/static/qr/QRCode.png";
 	public static final String CODIGO_QR_MOSTRAR = "permisos/mostrarQR";
+	public static final String QR_URL = "https://nicoroldan00.github.io/?";
 	
 	// PERMISO
 	
