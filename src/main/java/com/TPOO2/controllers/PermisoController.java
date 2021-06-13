@@ -1,5 +1,6 @@
 package com.TPOO2.controllers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +33,7 @@ import com.TPOO2.services.ILugarService;
 import com.TPOO2.services.IPermisoService;
 import com.TPOO2.services.IPersonaService;
 import com.TPOO2.services.IRodadoService;
+import com.google.zxing.WriterException;
 
 @Controller
 @RequestMapping("/permiso")
@@ -263,4 +266,10 @@ public class PermisoController {
 		return mAV;
 	}
 
+	@GetMapping("generarQR/{idPermiso}")
+    public ModelAndView generarQR(@PathVariable int idPermiso,Model model) throws WriterException, IOException {
+		Funciones.generarQR( ViewRouteHelper.QR_URL+permisoService.crearQrPorId(idPermiso).replaceAll("\\s+","%20"),400,400,ViewRouteHelper.CODIGO_QR_RUTA);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.CODIGO_QR_MOSTRAR);
+        return mAV;
+    }
 }
