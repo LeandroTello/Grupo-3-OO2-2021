@@ -96,8 +96,7 @@ public class PermisoController {
 			mAV.addObject("periodo", permisoPeriodoModel);
 		} else {
 			permisoService.insertOrUpdate(permisoPeriodoModel);			
-			Funciones.generarQR(Funciones.generarUrlPeriodo(permisoPeriodoModel),400,400,ViewRouteHelper.CODIGO_QR_UBICACION);
-			mAV.setViewName(ViewRouteHelper.CODIGO_QR_MOSTRAR);
+			mAV.setViewName(ViewRouteHelper.HOME_INDEX);
 		}
 		return mAV;
 	}
@@ -137,8 +136,7 @@ public class PermisoController {
 
 		else {			
 			permisoService.insertOrUpdate(permisoDiarioModel);
-			Funciones.generarQR(Funciones.generarUrlPero(permisoDiarioModel),400,400,ViewRouteHelper.CODIGO_QR_UBICACION);
-			mAV.setViewName(ViewRouteHelper.CODIGO_QR_MOSTRAR);
+			mAV.setViewName(ViewRouteHelper.HOME_INDEX);
 		}
 		return mAV;
 	}
