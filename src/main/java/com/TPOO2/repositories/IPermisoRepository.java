@@ -28,7 +28,7 @@ public interface IPermisoRepository extends JpaRepository<PermisoEntity, Seriali
 	@Query("SELECT p FROM PermisoDiarioEntity p where p.fecha BETWEEN (:desde) AND (:hasta)")	
 	public abstract Set<PermisoDiarioEntity> traerPermisosDiarioPorFecha(@Param("desde")LocalDate desde,@Param("hasta")LocalDate hasta);
 	
-	@Query("SELECT p FROM PermisoPeriodoEntity p where p.fecha < (:hasta)")	
+	@Query("SELECT p FROM PermisoPeriodoEntity p where p.fecha <= (:hasta)")	
 	public abstract Set<PermisoPeriodoEntity> traerPermisosPeriodoPorFecha(@Param("hasta")LocalDate hasta);
 	
 	@Query("SELECT p FROM PermisoEntity p where p.idPermiso = (:idPermiso)")
