@@ -87,7 +87,10 @@ table.center {
 										<th style="text-align:center">dominio de rodado</th>
 										<th style="text-align:center">Lugar de partida</th>
 										<th style="text-align:center">Lugar de llegada</th>
-										<th style="text-align:center">Vacaciones</th>																				
+										<th style="text-align:center">Vacaciones</th>
+										<th style="text-align:center" >Mostrar QR</th>																				
+										
+																														
 									</tr>
 								</thead>
 								<tbody>
@@ -102,6 +105,7 @@ table.center {
 										<td style="text-align:center"><span th:text="${permiso.desdeHasta[0].lugar}"></span></td>
 										<td style="text-align:center"><span th:text="${permiso.desdeHasta[1].lugar}"></span></td>
 										<td style="text-align:center"><span th:text="${permiso.vacaciones} ? 'Si' : 'No'"></span></td>
+										<td style="text-align:center; min-width:150px"><a th:href="@{generarQR/}+${permiso.idPermiso}"class="btn-modify" >Generar QR</a></td>
 									</tr>					
 								</tbody>
 							</table>							
